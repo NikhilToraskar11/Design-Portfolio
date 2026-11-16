@@ -177,6 +177,18 @@ html.cs-on{overflow:hidden}
 .cs-frame iframe{flex:1;width:100%;border:0;display:block;background:#FFFFFF}
 @media (max-width:640px){.cs-fbar span{display:none}.cs-fbar{gap:4px;padding:0 10px}}
 </style>
+<style>
+.ovbar{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));z-index:45;display:flex;align-items:center;gap:6px;padding:6px 6px 6px 18px;border-radius:999px;background:rgba(17,17,20,.92);color:#fff;font:600 14px/1 Inter,system-ui,sans-serif;box-shadow:0 18px 40px rgba(0,0,0,.35);transform:translate(-50%,24px);opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.2,.8,.2,1),transform .45s cubic-bezier(.2,.8,.2,1)}
+.ovbar.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.ovtip{opacity:.75;font-weight:500;white-space:nowrap}.ovs{display:none}
+.ovtop{border:0;cursor:pointer;white-space:nowrap;flex:none;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border-radius:999px;background:#fff;color:#111114;font:700 14px/1 Inter,system-ui,sans-serif;transition:transform .2s}
+.ovtop:hover{transform:translateY(-1px)}.ovtop:active{transform:scale(.97)}
+.frame.tapme{cursor:zoom-in}.frame.tapme *{cursor:zoom-in}
+.present .ovbar{display:none}
+html,body{touch-action:pan-x pan-y}
+@media (max-width:760px){.ovbar{bottom:calc(100px + env(safe-area-inset-bottom,0px));padding:5px 5px 5px 14px;gap:10px}.ovtip{font-size:13px}.ovl{display:none}.ovs{display:inline}.ovtop{height:38px;padding:0 14px;font-size:13px}}
+@media (prefers-reduced-motion:reduce){.ovbar{transition:none}}
+</style>
 </head><body>
 <!DOCTYPE html>
 <html lang="en">
@@ -1186,7 +1198,7 @@ const go=i=>{i=clamp(i,0,STOPS.length-1);
   const dist=Math.abs(i-active);
   flight={from:{cx:cam.cx,cy:cam.cy,s:cam.s},fromI:active,i,t0:performance.now(),dur:Math.min(1900,1150+dist*70)};
   scrollTo({top:i*SEG()+SEG()*.01,behavior:'auto'})};
-['wheel','touchstart'].forEach(ev=>addEventListener(ev,()=>{flight=null},{passive:true}));
+addEventListener('wheel',e=>{if(!e.ctrlKey)flight=null},{passive:true});addEventListener('touchstart',e=>{if(e.touches.length<2)flight=null},{passive:true});
 const setActive=i=>{
   active=i;const id=STOPS[i];
   $$('.layers button').forEach((b,k)=>b.classList.toggle('on',k===i));
@@ -1206,6 +1218,43 @@ $('#mPrev').onclick=()=>go(active-1);$('#mNext').onclick=()=>go(active+1);
 $('#toTop').onclick=()=>go(0);
 $('#hireBtn').onclick=()=>go(STOPS.indexOf('contact'));
 $('#workBtn').onclick=()=>go(STOPS.indexOf('work'));
+/* ---------- Pinch / trackpad zoom, tap-to-open and Back to top ---------- */
+(()=>{
+ const OV=STOPS.length-1;
+ const busy=()=>root.classList.contains('cs-on')||!!document.querySelector('.qv[aria-hidden="false"]');
+ const toWorld=(x,y)=>{const a=cam.a||area();const tx=a.x+a.w/2-cam.cx*cam.s,ty=a.y+a.h/2-cam.cy*cam.s;return {x:(x-tx)/cam.s,y:(y-ty)/cam.s}};
+ const nearest=(x,y)=>{const p=toWorld(x,y);let best=0,bd=Infinity;FRAMES.forEach((f,i)=>{const dx=Math.max(f.x-p.x,0,p.x-(f.x+f.w)),dy=Math.max(f.y-p.y,0,p.y-(f.y+f.h));const d=dx*dx+dy*dy;if(d<bd){bd=d;best=i}});return best};
+ let lockUntil=0;
+ const zoom=(dir,x,y)=>{const now=performance.now();if(now<lockUntil||busy())return;lockUntil=now+850;
+   if(dir>0){const i=nearest(x,y);if(i!==active)go(i)}else if(active!==OV)go(OV)};
+ /* trackpad pinch (Chrome, Edge, Firefox) and Ctrl/Cmd + mouse wheel */
+ let acc=0,accT=0;
+ addEventListener('wheel',e=>{if(!e.ctrlKey&&!e.metaKey)return;if(busy())return;e.preventDefault();
+   const now=performance.now();if(now-accT>220)acc=0;accT=now;acc+=-e.deltaY;
+   if(acc>36){acc=0;zoom(1,e.clientX,e.clientY)}else if(acc<-36){acc=0;zoom(-1,e.clientX,e.clientY)}},{passive:false});
+ /* Safari trackpad pinch */
+ let gx=innerWidth/2,gy=innerHeight/2;
+ addEventListener('gesturestart',e=>{if(busy())return;e.preventDefault();gx=e.clientX||gx;gy=e.clientY||gy},{passive:false});
+ addEventListener('gesturechange',e=>{if(busy())return;e.preventDefault();if(e.scale>1.18)zoom(1,gx,gy);else if(e.scale<.85)zoom(-1,gx,gy)},{passive:false});
+ addEventListener('gestureend',e=>{if(!busy())e.preventDefault()},{passive:false});
+ /* two-finger pinch on phones and tablets */
+ let t0=null;
+ const two=t=>({d:Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY),x:(t[0].clientX+t[1].clientX)/2,y:(t[0].clientY+t[1].clientY)/2});
+ addEventListener('touchstart',e=>{t0=(e.touches.length===2&&!busy())?two(e.touches):null},{passive:true});
+ addEventListener('touchmove',e=>{if(e.touches.length!==2||!t0||busy())return;e.preventDefault();const t=two(e.touches),r=t.d/t0.d;
+   if(r>1.2){zoom(1,t0.x,t0.y);t0=null}else if(r<.83){zoom(-1,t0.x,t0.y);t0=null}},{passive:false});
+ addEventListener('touchend',e=>{if(e.touches.length<2)t0=null},{passive:true});
+ /* click or tap a page that isn't the one in focus -> fly to it */
+ document.addEventListener('click',e=>{if(root.classList.contains('dev')||busy())return;const fr=e.target.closest('.frame');if(!fr)return;
+   const i=FRAMES.findIndex(f=>f.el===fr);if(i<0||i===active)return;e.preventDefault();e.stopPropagation();go(i)},true);
+ /* Back to top + hint, shown on the whole-canvas view */
+ const bar=document.createElement('div');bar.className='ovbar';bar.setAttribute('aria-hidden','true');
+ bar.innerHTML='<span class="ovtip"><span class="ovl">Tap a page or pinch to zoom in</span><span class="ovs">Tap a page to open</span></span><button type="button" class="ovtop">Back to top <b aria-hidden="true">↑</b></button>';
+ document.body.appendChild(bar);bar.querySelector('.ovtop').onclick=()=>go(0);
+ let last=-1;const tick=()=>{if(active!==last){last=active;const on=active===OV;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',on?'false':'true');
+   FRAMES.forEach((f,i)=>f.el.classList.toggle('tapme',i!==active))}requestAnimationFrame(tick)};requestAnimationFrame(tick);
+})();
+
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){e.preventDefault();go(STOPS.indexOf(g.dataset.go))}if(!e.target.closest('.pin,.pin-pop'))$$('.pin-pop').forEach(x=>x.classList.remove('open'))});
 addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(active+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(active-1)}});
 const pinTool=$('#pinTool');pinTool.onclick=()=>{const on=pinTool.getAttribute('aria-pressed')==='true';pinTool.setAttribute('aria-pressed',!on);root.classList.toggle('hide-pins',on)};

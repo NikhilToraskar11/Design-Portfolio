@@ -789,6 +789,7 @@ img{display:block;max-width:100%}
   <div class="tgroup hide-s" role="toolbar" aria-label="Canvas tools">
     <button class="tool" data-mode="dev" aria-pressed="false" title="Dev mode (D)" aria-label="Dev mode"><span class="k">&lt;/&gt;</span></button>
     <button class="tool" data-mode="present" aria-pressed="false" title="Present (P)" aria-label="Present mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg></button>
+    <button class="tool" id="bezBtn" aria-pressed="true" title="Bez, your cursor pal" aria-label="Turn cursor pal on or off"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="14" r="6"/><path d="M8 9L5 4M16 9l3-5"/><rect x="3.5" y="2.5" width="3" height="3" rx=".5"/><rect x="17.5" y="2.5" width="3" height="3" rx=".5"/></svg></button>
     <button class="tool" id="rxBtn" title="Reactions (E)" aria-label="Send a reaction"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="3"/></svg></button>
     <button class="tool" id="qaBtn" title="Quick actions (Ctrl K)" aria-label="Quick actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
     <button class="tool" id="pinTool" aria-pressed="true" title="Toggle design notes" aria-label="Toggle design notes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></button>
@@ -1738,6 +1739,77 @@ const boot=()=>{layout();setActive(0);cursorsRetarget(true)};
 let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{const keep=active;layout();scrollTo(0,keep*SEG());lastActive=-1},200)});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{layout()});
 boot();requestAnimationFrame(render);
+})();
+</script>
+<style>
+.bez{position:fixed;left:0;top:0;z-index:44;width:58px;height:58px;margin:-6px 0 0 -6px;pointer-events:none;will-change:transform;opacity:0;transition:opacity .35s ease}
+.bez.on{opacity:1}
+.bez .bz-body{transform-origin:29px 40px;transition:transform .12s ease-out}
+.bez .bz-h{transform-origin:29px 30px;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.bez.excited .bz-hl{transform:rotate(-14deg)}.bez.excited .bz-hr{transform:rotate(14deg)}
+.bez .bz-mouth-happy,.bez .bz-lids,.bez .bz-z{opacity:0;transition:opacity .25s}
+.bez.excited .bz-mouth-happy{opacity:1}.bez.excited .bz-mouth{opacity:0}
+.bez.sleep .bz-lids,.bez.sleep .bz-z{opacity:1}.bez.sleep .bz-pupils{opacity:0}
+.bez.sleep .bz-z{animation:bzz 2.4s ease-in-out infinite}
+@keyframes bzz{0%{transform:translate(0,0);opacity:0}30%{opacity:1}100%{transform:translate(8px,-14px);opacity:0}}
+.bez.blink .bz-pupils,.bez.blink .bz-whites{transform:scaleY(.1)}
+.bez .bz-pupils,.bez .bz-whites{transform-origin:29px 36px;transition:transform .08s}
+.bz-heart{position:fixed;left:0;top:0;z-index:44;pointer-events:none;font:700 14px/1 Inter,system-ui,sans-serif;color:#FF3D8B;animation:bzheart .9s ease-out forwards}
+@keyframes bzheart{from{transform:var(--p) scale(.6);opacity:1}to{transform:var(--p) translateY(-34px) scale(1.2);opacity:0}}
+.present .bez,.cs-on .bez,.dev .bez{display:none}
+@media (hover:none),(pointer:coarse){.bez,#bezBtn{display:none!important}}
+@media (prefers-reduced-motion:reduce){.bez .bz-body,.bez .bz-h{transition:none}.bez.sleep .bz-z{animation:none}}
+</style>
+<div class="bez" id="bez" aria-hidden="true"><svg width="58" height="58" viewBox="0 0 58 58">
+ <g class="bz-body">
+  <g class="bz-h bz-hl"><path d="M21 27 L11 12" stroke="#0A3254" stroke-width="2" stroke-linecap="round"/><rect x="7" y="8" width="8" height="8" rx="1.5" fill="#FFFFFF" stroke="#0D99FF" stroke-width="2"/></g>
+  <g class="bz-h bz-hr"><path d="M37 27 L47 12" stroke="#0A3254" stroke-width="2" stroke-linecap="round"/><rect x="43" y="8" width="8" height="8" rx="1.5" fill="#FFFFFF" stroke="#0D99FF" stroke-width="2"/></g>
+  <ellipse cx="29" cy="54" rx="13" ry="2.5" fill="#0A3254" opacity=".15"/>
+  <circle cx="29" cy="37" r="16" fill="#0D99FF"/>
+  <ellipse cx="23" cy="29" rx="5" ry="3" fill="#7FCBFF" opacity=".9"/>
+  <g class="bz-whites"><circle cx="23" cy="36" r="5" fill="#FFFFFF"/><circle cx="35" cy="36" r="5" fill="#FFFFFF"/></g>
+  <g class="bz-pupils"><circle class="bz-p" cx="23" cy="36" r="2.4" fill="#0A3254"/><circle class="bz-p" cx="35" cy="36" r="2.4" fill="#0A3254"/></g>
+  <g class="bz-lids" stroke="#0A3254" stroke-width="2" stroke-linecap="round" fill="none"><path d="M19.5 36.5 q3.5 2.5 7 0"/><path d="M31.5 36.5 q3.5 2.5 7 0"/></g>
+  <path class="bz-mouth" d="M26 44 q3 2.2 6 0" stroke="#0A3254" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path class="bz-mouth-happy" d="M25 43 q4 5 8 0 z" fill="#0A3254"/>
+  <circle cx="17" cy="42" r="2.4" fill="#FF8FB8" opacity=".75"/><circle cx="41" cy="42" r="2.4" fill="#FF8FB8" opacity=".75"/>
+  <text class="bz-z" x="44" y="24" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="700" fill="#0A3254">z</text>
+ </g>
+</svg></div>
+<script>
+(()=>{
+ const el=document.getElementById('bez'),btn=document.getElementById('bezBtn');if(!el)return;
+ const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;if(!fine)return;
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const body=el.querySelector('.bz-body'),pupils=[...el.querySelectorAll('.bz-p')];
+ let on=true;try{on=localStorage.getItem('bez')!=='off'}catch(e){}
+ const setOn=v=>{on=v;btn&&btn.setAttribute('aria-pressed',String(v));el.classList.toggle('on',v&&seen);try{localStorage.setItem('bez',v?'on':'off')}catch(e){}};
+ btn&&btn.addEventListener('click',()=>setOn(!on));
+ let mx=innerWidth/2,my=innerHeight/2,x=mx,y=my,vx=0,vy=0,seen=false,lastMove=performance.now(),last=performance.now();
+ addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'&&e.pointerType!=='pen')return;mx=e.clientX;my=e.clientY;lastMove=performance.now();
+   if(!seen){seen=true;x=mx+6;y=my+40;el.classList.toggle('on',on)}
+   el.classList.remove('sleep');
+   const t=e.target.closest&&e.target.closest('a,button,[role=button],input,label');el.classList.toggle('excited',!!t)},{passive:true});
+ document.addEventListener('mouseleave',()=>el.classList.remove('on'));
+ document.addEventListener('mouseenter',()=>{if(seen)el.classList.toggle('on',on)});
+ addEventListener('pointerdown',e=>{if(!on||e.pointerType!=='mouse')return;const h=document.createElement('span');h.className='bz-heart';h.textContent='♥';
+   h.style.setProperty('--p',`translate(${x+24}px,${y+6}px)`);document.body.appendChild(h);setTimeout(()=>h.remove(),950)},{passive:true});
+ setInterval(()=>{if(!on||el.classList.contains('sleep'))return;el.classList.add('blink');setTimeout(()=>el.classList.remove('blink'),140)},3200);
+ const loop=now=>{const dt=Math.min(48,now-last)/16.67;last=now;
+   if(on&&seen){
+     const tx=mx+6,ty=my+40;
+     if(reduce){x=tx;y=ty;vx=vy=0}else{const k=1-Math.pow(1-.14,dt);const nx=x+(tx-x)*k,ny=y+(ty-y)*k;vx=(nx-x)/dt;vy=(ny-y)/dt;x=nx;y=ny}
+     const sp=Math.hypot(vx,vy),idle=now-lastMove;
+     if(idle>6000)el.classList.add('sleep');
+     const tilt=Math.max(-16,Math.min(16,vx*1.6));const st=Math.min(.22,sp/40);
+     const bob=(!reduce&&idle>400&&!el.classList.contains('sleep'))?Math.sin(now/380)*1.6:0;
+     el.style.transform=`translate3d(${x.toFixed(1)}px,${(y+bob).toFixed(1)}px,0)`;
+     body.style.transform=`rotate(${tilt.toFixed(1)}deg) scale(${(1+st).toFixed(3)},${(1-st*.6).toFixed(3)})`;
+     const ax=mx-(x+29),ay=my-(y+36),d=Math.hypot(ax,ay)||1,m=Math.min(2.2,d/30);
+     pupils.forEach((p,i)=>{p.setAttribute('cx',(i?35:23)+ax/d*m);p.setAttribute('cy',36+ay/d*m)});
+   }
+   requestAnimationFrame(loop)};
+ setOn(on);requestAnimationFrame(loop);
 })();
 </script>
 </body>

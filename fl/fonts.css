@@ -1,0 +1,6 @@
+/* FlexiLoans — webfonts.
+   The provided sources (Figma file + fl-design-system-single/) ship NO font binaries, so the three
+   families the design uses are loaded from Google Fonts. Inter is the primary face for the whole
+   type scale; Roboto and DM Sans appear only in isolated legacy layers of the Figma file. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@400&family=DM+Sans:wght@400;700&display=swap");
+:root{--fl-font-primary:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--fl-font-secondary:"Roboto",Helvetica,Arial,sans-serif;--fl-font-tertiary:"DM Sans",Helvetica,Arial,sans-serif}

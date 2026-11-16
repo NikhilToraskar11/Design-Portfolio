@@ -1,0 +1,78 @@
+/* FlexiLoans — typography. 5 categories x 14 sizes x 5 weights = 70 text styles, verbatim from
+   the Figma "Typography" page. Single colour for the whole scale: Typograpghy/Primary-Text (#0A3254 —
+   the misspelling is the real Figma variable name).
+   Two genuine per-weight splits are preserved, not normalised:
+     Title-Small/16   letter-spacing 0.5px at 300/400, 0.15px at 500/600/700
+     Body-Medium/12   line-height 20px at 300/400, 16px at 500/600/700 */
+.fl-display-large-light{font-family:var(--fl-font-primary);font-weight:300;font-size:57px;line-height:64px;letter-spacing:-0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-large-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:57px;line-height:64px;letter-spacing:-0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-large-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:57px;line-height:64px;letter-spacing:-0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-large-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:57px;line-height:64px;letter-spacing:-0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-large-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:57px;line-height:64px;letter-spacing:-0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-medium-light{font-family:var(--fl-font-primary);font-weight:300;font-size:45px;line-height:52px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-medium-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:45px;line-height:52px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-medium-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:45px;line-height:52px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-medium-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:45px;line-height:52px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-medium-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:45px;line-height:52px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-small-light{font-family:var(--fl-font-primary);font-weight:300;font-size:36px;line-height:44px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-small-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:36px;line-height:44px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-small-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:36px;line-height:44px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-small-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:36px;line-height:44px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-display-small-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:36px;line-height:44px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-large-light{font-family:var(--fl-font-primary);font-weight:300;font-size:32px;line-height:40px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-large-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:32px;line-height:40px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-large-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:32px;line-height:40px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-large-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:32px;line-height:40px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-large-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:32px;line-height:40px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-medium-light{font-family:var(--fl-font-primary);font-weight:300;font-size:28px;line-height:36px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-medium-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:28px;line-height:36px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-medium-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:28px;line-height:36px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-medium-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:28px;line-height:36px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-medium-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:28px;line-height:36px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-small-light{font-family:var(--fl-font-primary);font-weight:300;font-size:24px;line-height:32px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-small-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:24px;line-height:32px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-small-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:24px;line-height:32px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-small-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:24px;line-height:32px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-headline-small-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:24px;line-height:32px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-large-light{font-family:var(--fl-font-primary);font-weight:300;font-size:22px;line-height:28px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-large-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:22px;line-height:28px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-large-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:22px;line-height:28px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-large-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:22px;line-height:28px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-large-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:22px;line-height:28px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-medium-light{font-family:var(--fl-font-primary);font-weight:300;font-size:18px;line-height:26px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-medium-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:18px;line-height:26px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-medium-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:18px;line-height:26px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-medium-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:18px;line-height:26px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-medium-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:18px;line-height:26px;letter-spacing:0px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-small-light{font-family:var(--fl-font-primary);font-weight:300;font-size:16px;line-height:24px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-small-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:16px;line-height:24px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-small-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:16px;line-height:24px;letter-spacing:0.15px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-small-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:16px;line-height:24px;letter-spacing:0.15px;color:var(--typograpghy-primary-text);margin:0}
+.fl-title-small-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:16px;line-height:24px;letter-spacing:0.15px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-large-light{font-family:var(--fl-font-primary);font-weight:300;font-size:14px;line-height:20px;letter-spacing:0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-large-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:14px;line-height:20px;letter-spacing:0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-large-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:14px;line-height:20px;letter-spacing:0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-large-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:14px;line-height:20px;letter-spacing:0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-large-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:14px;line-height:20px;letter-spacing:0.25px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-medium-light{font-family:var(--fl-font-primary);font-weight:300;font-size:12px;line-height:20px;letter-spacing:0.4px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-medium-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:12px;line-height:20px;letter-spacing:0.4px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-medium-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:12px;line-height:16px;letter-spacing:0.4px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-medium-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:12px;line-height:16px;letter-spacing:0.4px;color:var(--typograpghy-primary-text);margin:0}
+.fl-body-medium-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:12px;line-height:16px;letter-spacing:0.4px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-large-light{font-family:var(--fl-font-primary);font-weight:300;font-size:14px;line-height:20px;letter-spacing:0.1px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-large-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:14px;line-height:20px;letter-spacing:0.1px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-large-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:14px;line-height:20px;letter-spacing:0.1px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-large-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:14px;line-height:20px;letter-spacing:0.1px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-large-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:14px;line-height:20px;letter-spacing:0.1px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-medium-light{font-family:var(--fl-font-primary);font-weight:300;font-size:12px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-medium-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:12px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-medium-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:12px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-medium-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:12px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-medium-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:12px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-small-light{font-family:var(--fl-font-primary);font-weight:300;font-size:11px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-small-regular{font-family:var(--fl-font-primary);font-weight:400;font-size:11px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-small-medium{font-family:var(--fl-font-primary);font-weight:500;font-size:11px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-small-semibold{font-family:var(--fl-font-primary);font-weight:600;font-size:11px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+.fl-label-small-bold{font-family:var(--fl-font-primary);font-weight:700;font-size:11px;line-height:16px;letter-spacing:0.5px;color:var(--typograpghy-primary-text);margin:0}
+/* Semantic text aliases — the four roles the components actually paint with. */
+:root{--fl-text-primary:var(--typograpghy-primary-text);--fl-text-body:var(--typograpghy-body-text);--fl-text-inverse:var(--typograpghy-primary-text-2);--fl-text-disabled:var(--typograpghy-text-disabled)}

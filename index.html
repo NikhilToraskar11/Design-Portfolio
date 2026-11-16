@@ -789,7 +789,7 @@ img{display:block;max-width:100%}
   <div class="tgroup hide-s" role="toolbar" aria-label="Canvas tools">
     <button class="tool" data-mode="dev" aria-pressed="false" title="Dev mode (D)" aria-label="Dev mode"><span class="k">&lt;/&gt;</span></button>
     <button class="tool" data-mode="present" aria-pressed="false" title="Present (P)" aria-label="Present mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg></button>
-    <button class="tool" id="bezBtn" aria-pressed="true" title="Mochi, your cursor kitten" aria-label="Turn cursor kitten on or off"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="16" rx="5" ry="4"/><ellipse cx="6" cy="10" rx="2" ry="2.6"/><ellipse cx="10" cy="6.5" rx="2" ry="2.6"/><ellipse cx="14" cy="6.5" rx="2" ry="2.6"/><ellipse cx="18" cy="10" rx="2" ry="2.6"/></svg></button>
+    <button class="tool" id="bezBtn" aria-pressed="true" title="Kitten, your cursor buddy" aria-label="Turn cursor kitten on or off"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="16" rx="5" ry="4"/><ellipse cx="6" cy="10" rx="2" ry="2.6"/><ellipse cx="10" cy="6.5" rx="2" ry="2.6"/><ellipse cx="14" cy="6.5" rx="2" ry="2.6"/><ellipse cx="18" cy="10" rx="2" ry="2.6"/></svg></button>
     <button class="tool" id="rxBtn" title="Reactions (E)" aria-label="Send a reaction"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="3"/></svg></button>
     <button class="tool" id="qaBtn" title="Quick actions (Ctrl K)" aria-label="Quick actions"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
     <button class="tool" id="pinTool" aria-pressed="true" title="Toggle design notes" aria-label="Toggle design notes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></button>
@@ -1746,7 +1746,6 @@ boot();requestAnimationFrame(render);
 .bez.on{opacity:1}
 .bez .bz-body{transform-origin:29px 40px;transition:transform .12s ease-out}
 .bez .bz-h{transform-origin:29px 30px;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
-.bez.excited .bz-hl{transform:rotate(10deg) translate(-2px,-2px)}.bez.excited .bz-hr{transform:rotate(-10deg) translate(2px,-2px)}
 .bez .bz-mouth-happy,.bez .bz-lids,.bez .bz-z{opacity:0;transition:opacity .25s}
 .bez.excited .bz-mouth-happy{opacity:1}.bez.excited .bz-mouth{opacity:0}
 .bez.sleep .bz-lids,.bez.sleep .bz-z{opacity:1}.bez.sleep .bz-pupils,.bez.sleep .bz-whites{opacity:0}
@@ -1754,44 +1753,36 @@ boot();requestAnimationFrame(render);
 @keyframes bzz{0%{transform:translate(0,0);opacity:0}30%{opacity:1}100%{transform:translate(8px,-14px);opacity:0}}
 .bez.blink .bz-pupils,.bez.blink .bz-whites{transform:scaleY(.1)}
 .bez .bz-pupils,.bez .bz-whites{transform-origin:29px 36px;transition:transform .08s}
-.bez .bz-w{transform-box:fill-box}.bez .bz-wl{transform-origin:100% 40%}.bez .bz-wr{transform-origin:0% 40%}
-.bez .bz-wl{animation:bzflapL 1.6s ease-in-out infinite}.bez .bz-wr{animation:bzflapR 1.6s ease-in-out infinite}
-.bez.moving .bz-wl{animation-duration:.32s}.bez.moving .bz-wr{animation-duration:.32s}
-.bez.sleep .bz-wl,.bez.sleep .bz-wr{animation:none;transform:rotate(18deg)}
-.bez.sleep .bz-wr{transform:rotate(-18deg)}
-@keyframes bzflapL{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-22deg)}}
-@keyframes bzflapR{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(22deg)}}
-.bez .bz-tail{transform-box:fill-box;transform-origin:0% 50%;animation:bztail 2.2s ease-in-out infinite}
-@keyframes bztail{0%,100%{transform:rotate(0)}50%{transform:rotate(-10deg)}}
-.bz-spark{position:fixed;left:0;top:0;z-index:43;pointer-events:none;font-size:11px;line-height:1;animation:bzspark .8s ease-out forwards}
-@keyframes bzspark{from{transform:var(--p) scale(1);opacity:.95}to{transform:var(--p) translateY(10px) scale(.2) rotate(90deg);opacity:0}}
-.bz-heart{position:fixed;left:0;top:0;z-index:44;pointer-events:none;font:700 14px/1 Inter,system-ui,sans-serif;color:#FF3D8B;animation:bzheart .9s ease-out forwards}
-@keyframes bzheart{from{transform:var(--p) scale(.6);opacity:1}to{transform:var(--p) translateY(-34px) scale(1.2);opacity:0}}
+.bez .bz-happy{opacity:0;transition:opacity .15s}
+.bez.excited .bz-happy{opacity:1}.bez.excited .bz-whites,.bez.excited .bz-pupils{opacity:0}
+.bez .bz-whites,.bez .bz-pupils{transition:opacity .15s,transform .08s}
+.bez .bz-face{transition:transform .18s ease-out}
+.bez.sleep .bz-body{transform:rotate(-8deg) translateY(2px)!important;transition:transform .8s ease}
 .present .bez,.cs-on .bez,.dev .bez{display:none}
 @media (hover:none),(pointer:coarse){.bez,#bezBtn{display:none!important}}
-@media (prefers-reduced-motion:reduce){.bez .bz-body,.bez .bz-h{transition:none}.bez.sleep .bz-z,.bez .bz-w,.bez .bz-tail{animation:none}}
+@media (prefers-reduced-motion:reduce){.bez .bz-body,.bez .bz-h{transition:none}.bez.sleep .bz-z{animation:none}}
 </style>
 <div class="bez" id="bez" aria-hidden="true"><svg width="58" height="58" viewBox="0 0 58 58" overflow="visible">
  <g class="bz-body">
-  <ellipse cx="29" cy="55" rx="12" ry="2.2" fill="#0A3254" opacity=".12"/>
-  <g class="bz-h bz-hl"><g class="bz-w bz-wl"><path d="M17 34 C6 26 0 30 2 37 C-1 41 4 45 9 42 C8 47 14 47 17 40 Z" fill="#E6DBFF" stroke="#B9A4F5" stroke-width="1.2"/><path d="M6 36 C9 37 12 37 15 36 M8 41 C11 40 13 39 15 38" stroke="#B9A4F5" stroke-width="1" fill="none" stroke-linecap="round"/></g></g>
-  <g class="bz-h bz-hr"><g class="bz-w bz-wr"><path d="M41 34 C52 26 58 30 56 37 C59 41 54 45 49 42 C50 47 44 47 41 40 Z" fill="#D7F1FF" stroke="#8FD3F5" stroke-width="1.2"/><path d="M52 36 C49 37 46 37 43 36 M50 41 C47 40 45 39 43 38" stroke="#8FD3F5" stroke-width="1" fill="none" stroke-linecap="round"/></g></g>
-  <path class="bz-tail" d="M38 49 C47 50 50 43 46 39 C44 37 41 39 43 41" stroke="#F3E3D6" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-  <ellipse cx="29" cy="47" rx="10" ry="7" fill="#FFF8F2" stroke="#EBD9CB" stroke-width="1"/>
-  <ellipse cx="25" cy="52.5" rx="3" ry="2" fill="#FFF8F2" stroke="#EBD9CB" stroke-width="1"/><ellipse cx="33" cy="52.5" rx="3" ry="2" fill="#FFF8F2" stroke="#EBD9CB" stroke-width="1"/>
-  <path d="M15.5 30 L16.5 16 L26 24 Z" fill="#FFF8F2" stroke="#EBD9CB" stroke-width="1" stroke-linejoin="round"/><path d="M18 26.5 L18.6 19.5 L23.5 23.6 Z" fill="#FFC2DA"/>
-  <path d="M42.5 30 L41.5 16 L32 24 Z" fill="#FFF8F2" stroke="#EBD9CB" stroke-width="1" stroke-linejoin="round"/><path d="M40 26.5 L39.4 19.5 L34.5 23.6 Z" fill="#FFC2DA"/>
-  <ellipse cx="29" cy="35" rx="14.5" ry="12.5" fill="#FFF8F2" stroke="#EBD9CB" stroke-width="1"/>
-  <path d="M27 23.5 q2 2.2 4 0" stroke="#F2C9A8" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-  <g class="bz-whites"><ellipse cx="23" cy="35" rx="3.6" ry="4.2" fill="#2B2440"/><ellipse cx="35" cy="35" rx="3.6" ry="4.2" fill="#2B2440"/></g>
-  <g class="bz-pupils"><circle class="bz-p" cx="23" cy="36" r="1.4" fill="#FFFFFF"/><circle class="bz-p" cx="35" cy="36" r="1.4" fill="#FFFFFF"/><circle cx="24.2" cy="33.4" r=".9" fill="#FFFFFF"/><circle cx="36.2" cy="33.4" r=".9" fill="#FFFFFF"/></g>
-  <g class="bz-lids" stroke="#2B2440" stroke-width="1.8" stroke-linecap="round" fill="none"><path d="M19.6 35.5 q3.4 2.6 6.8 0"/><path d="M31.6 35.5 q3.4 2.6 6.8 0"/></g>
-  <path d="M28 39.6 L30 39.6 L29 40.8 Z" fill="#FF8FB8"/>
-  <path class="bz-mouth" d="M26.6 41.6 q1.2 1.2 2.4 0 q1.2 1.2 2.4 0" stroke="#2B2440" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-  <path class="bz-mouth-happy" d="M26.4 41.4 q2.6 4 5.2 0 z" fill="#2B2440"/>
-  <ellipse cx="18.5" cy="40" rx="2.6" ry="1.6" fill="#FFB3CF" opacity=".8"/><ellipse cx="39.5" cy="40" rx="2.6" ry="1.6" fill="#FFB3CF" opacity=".8"/>
-  <path d="M15 37.5 L9.5 36.5 M15 39.5 L9.5 40.5 M43 37.5 L48.5 36.5 M43 39.5 L48.5 40.5" stroke="#D9C2B3" stroke-width=".9" stroke-linecap="round"/>
-  <text class="bz-z" x="44" y="22" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="700" fill="#9C86E8">z</text>
+  <ellipse cx="29" cy="52" rx="13" ry="2.2" fill="#0A3254" opacity=".12"/>
+  <path d="M12.5 30 L13.5 11 L25 20 Z" fill="#5B6270" stroke="#3E434D" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M15.6 25 L16.2 16.5 L21.5 20.4 Z" fill="#3E434D"/>
+  <path d="M45.5 30 L44.5 11 L33 20 Z" fill="#5B6270" stroke="#3E434D" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M42.4 25 L41.8 16.5 L36.5 20.4 Z" fill="#3E434D"/>
+  <ellipse cx="29" cy="34" rx="17" ry="14.5" fill="#6B7380" stroke="#3E434D" stroke-width="1.2"/>
+  <path d="M25.5 21.5 L26.3 26 M29 20.8 L29 25.6 M32.5 21.5 L31.7 26" stroke="#4A505B" stroke-width="1.6" stroke-linecap="round"/>
+  <g class="bz-face">
+   <ellipse cx="29" cy="41.5" rx="8.5" ry="6.2" fill="#F1EEE8"/>
+   <g class="bz-whites"><circle cx="23" cy="35.5" r="4.2" fill="#F2C14E" stroke="#3E434D" stroke-width="1"/><circle cx="35" cy="35.5" r="4.2" fill="#F2C14E" stroke="#3E434D" stroke-width="1"/></g>
+   <g class="bz-pupils"><ellipse class="bz-p" cx="23" cy="36" rx="1.5" ry="3" fill="#16181C"/><ellipse class="bz-p" cx="35" cy="36" rx="1.5" ry="3" fill="#16181C"/></g>
+   <g class="bz-happy" stroke="#16181C" stroke-width="2" stroke-linecap="round" fill="none"><path d="M19.6 36.8 q3.4 -4.2 6.8 0"/><path d="M31.6 36.8 q3.4 -4.2 6.8 0"/></g>
+   <g class="bz-lids" stroke="#16181C" stroke-width="1.8" stroke-linecap="round" fill="none"><path d="M19.6 36 q3.4 2.2 6.8 0"/><path d="M31.6 36 q3.4 2.2 6.8 0"/></g>
+   <path d="M27.5 39.2 L30.5 39.2 L29 40.9 Z" fill="#3E434D"/>
+   <path class="bz-mouth" d="M26.4 42.2 q1.3 1.3 2.6 0 q1.3 1.3 2.6 0" stroke="#3E434D" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+   <path class="bz-mouth-happy" d="M26.2 41.8 q2.8 4.4 5.6 0 z" fill="#3E434D"/>
+   <path d="M20.5 40.5 L13 39.3 M20.5 42.5 L13 43.5 M37.5 40.5 L45 39.3 M37.5 42.5 L45 43.5" stroke="#C9CDD3" stroke-width=".9" stroke-linecap="round"/>
+  </g>
+  <text class="bz-z" x="45" y="20" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="700" fill="#5B6270">z</text>
  </g>
 </svg></div>
 <script>
@@ -1799,19 +1790,18 @@ boot();requestAnimationFrame(render);
  const el=document.getElementById('bez'),btn=document.getElementById('bezBtn');if(!el)return;
  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;if(!fine)return;
  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
- const body=el.querySelector('.bz-body'),pupils=[...el.querySelectorAll('.bz-p')];
+ const body=el.querySelector('.bz-body'),face=el.querySelector('.bz-face'),pupils=[...el.querySelectorAll('.bz-p')];
  let on=true;try{on=localStorage.getItem('bez')!=='off'}catch(e){}
  const setOn=v=>{on=v;btn&&btn.setAttribute('aria-pressed',String(v));el.classList.toggle('on',v&&seen);try{localStorage.setItem('bez',v?'on':'off')}catch(e){}};
  btn&&btn.addEventListener('click',()=>setOn(!on));
- let mx=innerWidth/2,my=innerHeight/2,x=mx,y=my,vx=0,vy=0,seen=false,lastMove=performance.now(),last=performance.now();
+ let hoverBtn=false,mx=innerWidth/2,my=innerHeight/2,x=mx,y=my,vx=0,vy=0,seen=false,lastMove=performance.now(),last=performance.now();
  addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'&&e.pointerType!=='pen')return;mx=e.clientX;my=e.clientY;lastMove=performance.now();
    if(!seen){seen=true;x=mx+6;y=my+40;el.classList.toggle('on',on)}
    el.classList.remove('sleep');
-   const t=e.target.closest&&e.target.closest('a,button,[role=button],input,label');el.classList.toggle('excited',!!t)},{passive:true});
+   hoverBtn=!!(e.target.closest&&e.target.closest('a,button,[role=button],input,label'))},{passive:true});
  document.addEventListener('mouseleave',()=>el.classList.remove('on'));
  document.addEventListener('mouseenter',()=>{if(seen)el.classList.toggle('on',on)});
- addEventListener('pointerdown',e=>{if(!on||e.pointerType!=='mouse')return;const h=document.createElement('span');h.className='bz-heart';h.textContent='♥';
-   h.style.setProperty('--p',`translate(${x+24}px,${y+6}px)`);document.body.appendChild(h);setTimeout(()=>h.remove(),950)},{passive:true});
+ let joyT=0;addEventListener('pointerdown',e=>{if(!on||e.pointerType!=='mouse')return;joyT=performance.now()+900},{passive:true});
  setInterval(()=>{if(!on||el.classList.contains('sleep'))return;el.classList.add('blink');setTimeout(()=>el.classList.remove('blink'),140)},3200);
  const loop=now=>{const dt=Math.min(48,now-last)/16.67;last=now;
    if(on&&seen){
@@ -1819,15 +1809,14 @@ boot();requestAnimationFrame(render);
      if(reduce){x=tx;y=ty;vx=vy=0}else{const k=1-Math.pow(1-.14,dt);const nx=x+(tx-x)*k,ny=y+(ty-y)*k;vx=(nx-x)/dt;vy=(ny-y)/dt;x=nx;y=ny}
      const sp=Math.hypot(vx,vy),idle=now-lastMove;
      if(idle>6000)el.classList.add('sleep');
-     el.classList.toggle('moving',sp>.6);
-     if(!reduce&&sp>2.2&&now-(window.__bzS||0)>70){window.__bzS=now;const k=document.createElement('span');k.className='bz-spark';k.textContent=['✦','✧','⋆'][Math.floor(Math.random()*3)];k.style.color=['#C9B6FF','#9FDDFB','#FFB3CF','#FFE08A'][Math.floor(Math.random()*4)];
-       k.style.setProperty('--p',`translate(${(x+18+Math.random()*20).toFixed(0)}px,${(y+36+Math.random()*12).toFixed(0)}px)`);document.body.appendChild(k);setTimeout(()=>k.remove(),820)}
-     const tilt=Math.max(-16,Math.min(16,vx*1.6));const st=Math.min(.22,sp/40);
+     const tilt=Math.max(-12,Math.min(12,vx*1.2));const st=Math.min(.08,sp/80);
      const bob=(!reduce&&idle>400&&!el.classList.contains('sleep'))?Math.sin(now/380)*1.6:0;
      el.style.transform=`translate3d(${x.toFixed(1)}px,${(y+bob).toFixed(1)}px,0)`;
      body.style.transform=`rotate(${tilt.toFixed(1)}deg) scale(${(1+st).toFixed(3)},${(1-st*.6).toFixed(3)})`;
      const ax=mx-(x+29),ay=my-(y+36),d=Math.hypot(ax,ay)||1,m=Math.min(2.2,d/30);
      pupils.forEach((p,i)=>{p.setAttribute('cx',(i?35:23)+ax/d*m);p.setAttribute('cy',36+ay/d*m)});
+     face.style.transform=`translate(${(ax/d*m*1.3).toFixed(2)}px,${(ay/d*m*1).toFixed(2)}px)`;
+     el.classList.toggle('excited',!el.classList.contains('sleep')&&(hoverBtn||now<joyT));
    }
    requestAnimationFrame(loop)};
  setOn(on);requestAnimationFrame(loop);

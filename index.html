@@ -1758,11 +1758,21 @@ boot();requestAnimationFrame(render);
 .bez .bz-whites,.bez .bz-pupils{transition:opacity .15s,transform .08s}
 .bez .bz-face{transition:transform .18s ease-out}
 .bez.sleep .bz-body{transform:rotate(-8deg) translateY(2px)!important;transition:transform .8s ease}
+.bez .bz-say{position:absolute;left:60px;top:-8px;width:max-content;max-width:230px;padding:9px 12px;border-radius:12px 12px 12px 4px;background:#FFFFFF;color:#111114;border:1px solid #E1E4E8;box-shadow:0 10px 24px rgba(17,17,20,.16);font:500 13px/1.4 Inter,system-ui,sans-serif;opacity:0;transform:translateY(6px) scale(.96);transform-origin:0 100%;transition:opacity .25s ease,transform .3s cubic-bezier(.3,1.4,.5,1);pointer-events:none}
+.bez .bz-say.show{opacity:1;transform:none}
+.bez.left .bz-say{left:auto;right:60px;border-radius:12px 12px 4px 12px;transform-origin:100% 100%}
+.bez .bz-love{opacity:0}
+.bez.joy svg{animation:bzhop .9s cubic-bezier(.3,1.5,.5,1)}
+.bez.joy .bz-love{animation:bzlove 1.4s ease-out}
+@keyframes bzhop{0%{transform:translateY(0)}22%{transform:translateY(-12px)}40%{transform:translateY(0)}58%{transform:translateY(-7px)}76%,100%{transform:translateY(0)}}
+@keyframes bzlove{0%{opacity:0;transform:translateY(6px) scale(.5)}20%{opacity:1;transform:translateY(0) scale(1.15)}70%{opacity:1;transform:translateY(-6px) scale(1)}100%{opacity:0;transform:translateY(-14px) scale(.9)}}
+.bez .bz-love{transform-box:fill-box;transform-origin:50% 50%}
+@media (prefers-reduced-motion:reduce){.bez.joy svg,.bez.joy .bz-love{animation:none}}
 .present .bez,.cs-on .bez,.dev .bez{display:none}
 @media (hover:none),(pointer:coarse){.bez,#bezBtn{display:none!important}}
 @media (prefers-reduced-motion:reduce){.bez .bz-body,.bez .bz-h{transition:none}.bez.sleep .bz-z{animation:none}}
 </style>
-<div class="bez" id="bez" aria-hidden="true"><svg width="58" height="58" viewBox="0 0 58 58" overflow="visible">
+<div class="bez" id="bez"><div class="bz-say" role="status" aria-live="polite"></div><svg width="58" height="58" viewBox="0 0 58 58" overflow="visible">
  <g class="bz-body">
   <ellipse cx="29" cy="52" rx="13" ry="2.2" fill="#0A3254" opacity=".12"/>
   <path d="M12.5 30 L13.5 11 L25 20 Z" fill="#5B6270" stroke="#3E434D" stroke-width="1.2" stroke-linejoin="round"/>
@@ -1782,6 +1792,7 @@ boot();requestAnimationFrame(render);
    <path class="bz-mouth-happy" d="M26.2 41.8 q2.8 4.4 5.6 0 z" fill="#3E434D"/>
    <path d="M20.5 40.5 L13 39.3 M20.5 42.5 L13 43.5 M37.5 40.5 L45 39.3 M37.5 42.5 L45 43.5" stroke="#C9CDD3" stroke-width=".9" stroke-linecap="round"/>
   </g>
+  <text class="bz-love" x="29" y="8" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="700" fill="#E5484D">♥</text>
   <text class="bz-z" x="45" y="20" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="700" fill="#5B6270">z</text>
  </g>
 </svg></div>
@@ -1819,6 +1830,37 @@ boot();requestAnimationFrame(render);
      el.classList.toggle('excited',!el.classList.contains('sleep')&&(hoverBtn||now<joyT));
    }
    requestAnimationFrame(loop)};
+ 
+ const say=el.querySelector('.bz-say');
+ const LINES={
+  'Hello':["Psst… Nikhil makes complex things simple. I've watched him do it.","Hi! You're looking at my favourite designer."],
+  'About me':["Intern to full-time designer. I'm so proud of my human.","He sweats the details. Even the 1px ones."],
+  'Experience':["Nearly 2 years of shipping real products. Not bad, right?"],
+  'All work':["Every project here is real work. Go on, pick one!"],
+  'Design system':["He built a whole design system. Design and code finally agree."],
+  'FL Design System':["Figma to React, one to one. That's his doing."],
+  'Bank statement upload':["He reworked the step where loan applications used to stall."],
+  'CloudNBFC lender portal':["Rebuilt end to end on the design system. So clean."],
+  'Loan Against Property':["Wireframe to coded prototype in one week. Read this one!"],
+  'SCF marketing website':["B2B finance in plain words. Even I understood it."],
+  'Wins':["Look at all these wins. I helped by napping."],
+  'Off the canvas':["He's a team player. On the field too."],
+  'Say hello':["Hire him! I'll come along for free.","Go on, say hi. He'd love to hear from you."],
+  'Whole canvas':["That's all of him. Tap any page to look closer."]
+ };
+ const BTN=["Good choice!","Ooh, click it!","Yes, that one!"];
+ let sayT=0,lastPage='',quietUntil=0;const used={};
+ let pending='';const speak=(txt)=>{if(!seen){pending=txt;return}if(!on||el.classList.contains('sleep'))return;pending='';
+   el.classList.toggle('left',x>innerWidth-300);
+   say.textContent=txt;say.classList.add('show');
+   el.classList.remove('joy');void el.offsetWidth;el.classList.add('joy');joyT=performance.now()+1400;
+   clearTimeout(sayT);sayT=setTimeout(()=>{say.classList.remove('show');el.classList.remove('joy')},4800);
+   quietUntil=performance.now()+9000};
+ const pageNow=()=>{const b=document.querySelector('.layers button.on');return b?b.textContent.trim():''};
+ setInterval(()=>{const p=pageNow();if(!p||p===lastPage)return;lastPage=p;const list=LINES[p];if(!list)return;
+   const k=(used[p]||0);used[p]=k+1;setTimeout(()=>{if(pageNow()===p)speak(list[k%list.length])},900)},400);
+ setInterval(()=>{if(pending&&seen){const t=pending;pending='';setTimeout(()=>speak(t),700)}},300);
+ let wasBtn=false;setInterval(()=>{if(hoverBtn&&!wasBtn&&performance.now()>quietUntil&&Math.random()<.35)speak(BTN[Math.floor(Math.random()*BTN.length)]);wasBtn=hoverBtn},300);
  setOn(on);requestAnimationFrame(loop);
 })();
 </script>

@@ -1760,7 +1760,7 @@ boot();requestAnimationFrame(render);
 .bez.sleep .bz-body{transform:rotate(-8deg) translateY(2px)!important;transition:transform .8s ease}
 .bez .bz-say{position:absolute;left:60px;top:-8px;width:max-content;max-width:230px;padding:9px 12px;border-radius:12px 12px 12px 4px;background:#FFFFFF;color:#111114;border:1px solid #E1E4E8;box-shadow:0 10px 24px rgba(17,17,20,.16);font:500 13px/1.4 Inter,system-ui,sans-serif;opacity:0;transform:translateY(6px) scale(.96);transform-origin:0 100%;transition:opacity .25s ease,transform .3s cubic-bezier(.3,1.4,.5,1);pointer-events:none}
 .bez .bz-say.show{opacity:1;transform:none}
-.bez.left .bz-say{left:auto;right:60px;border-radius:12px 12px 4px 12px;transform-origin:100% 100%}
+.bez.bz-flip .bz-say{left:auto;right:60px;border-radius:12px 12px 4px 12px;transform-origin:100% 100%}
 .bez .bz-love{opacity:0}
 .bez.joy svg{animation:bzhop .9s cubic-bezier(.3,1.5,.5,1)}
 .bez.joy .bz-love{animation:bzlove 1.4s ease-out}
@@ -1769,7 +1769,9 @@ boot();requestAnimationFrame(render);
 .bez .bz-love{transform-box:fill-box;transform-origin:50% 50%}
 @media (prefers-reduced-motion:reduce){.bez.joy svg,.bez.joy .bz-love{animation:none}}
 .present .bez,.cs-on .bez,.dev .bez{display:none}
-@media (hover:none),(pointer:coarse){.bez,#bezBtn{display:none!important}}
+@media (hover:none),(pointer:coarse){#bezBtn{display:none!important}}
+.bez.dock svg{pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bez.dock .bz-say{max-width:min(230px,calc(100vw - 110px))}
 @media (prefers-reduced-motion:reduce){.bez .bz-body,.bez .bz-h{transition:none}.bez.sleep .bz-z{animation:none}}
 </style>
 <div class="bez" id="bez"><div class="bz-say" role="status" aria-live="polite"></div><svg width="58" height="58" viewBox="0 0 58 58" overflow="visible">
@@ -1799,7 +1801,7 @@ boot();requestAnimationFrame(render);
 <script>
 (()=>{
  const el=document.getElementById('bez'),btn=document.getElementById('bezBtn');if(!el)return;
- const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;if(!fine)return;
+ const dock=!matchMedia('(hover:hover) and (pointer:fine)').matches;if(dock)el.classList.add('dock');
  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const body=el.querySelector('.bz-body'),face=el.querySelector('.bz-face'),pupils=[...el.querySelectorAll('.bz-p')];
  let on=true;try{on=localStorage.getItem('bez')!=='off'}catch(e){}
@@ -1812,14 +1814,16 @@ boot();requestAnimationFrame(render);
    hoverBtn=!!(e.target.closest&&e.target.closest('a,button,[role=button],input,label'))},{passive:true});
  document.addEventListener('mouseleave',()=>el.classList.remove('on'));
  document.addEventListener('mouseenter',()=>{if(seen)el.classList.toggle('on',on)});
- let joyT=0;addEventListener('pointerdown',e=>{if(!on||e.pointerType!=='mouse')return;joyT=performance.now()+900},{passive:true});
+ let joyT=0;addEventListener('pointerdown',e=>{if(!on)return;if(e.pointerType==='mouse'){joyT=performance.now()+900;return}if(dock){mx=e.clientX;my=e.clientY;lastMove=performance.now();el.classList.remove('sleep');joyT=performance.now()+900}},{passive:true});
+ if(dock){seen=true;addEventListener('scroll',()=>{lastMove=performance.now();el.classList.remove('sleep')},{passive:true});}
  setInterval(()=>{if(!on||el.classList.contains('sleep'))return;el.classList.add('blink');setTimeout(()=>el.classList.remove('blink'),140)},3200);
  const loop=now=>{const dt=Math.min(48,now-last)/16.67;last=now;
    if(on&&seen){
-     const tx=mx+6,ty=my+40;
+     let tx=mx+6,ty=my+40;
+     if(dock){const ov=document.querySelector('.ovbar.on')?58:0;tx=innerWidth-58-14;ty=innerHeight-58-(innerWidth<=760?100:24)-ov}
      if(reduce){x=tx;y=ty;vx=vy=0}else{const k=1-Math.pow(1-.14,dt);const nx=x+(tx-x)*k,ny=y+(ty-y)*k;vx=(nx-x)/dt;vy=(ny-y)/dt;x=nx;y=ny}
      const sp=Math.hypot(vx,vy),idle=now-lastMove;
-     if(idle>6000)el.classList.add('sleep');
+     if(idle>(dock?8000:6000))el.classList.add('sleep');
      const tilt=Math.max(-12,Math.min(12,vx*1.2));const st=Math.min(.08,sp/80);
      const bob=(!reduce&&idle>400&&!el.classList.contains('sleep'))?Math.sin(now/380)*1.6:0;
      el.style.transform=`translate3d(${x.toFixed(1)}px,${(y+bob).toFixed(1)}px,0)`;
@@ -1851,7 +1855,7 @@ boot();requestAnimationFrame(render);
  const BTN=["Good choice!","Ooh, click it!","Yes, that one!"];
  let sayT=0,lastPage='',quietUntil=0;const used={};
  let pending='';const speak=(txt)=>{if(!seen){pending=txt;return}if(!on||el.classList.contains('sleep'))return;pending='';
-   el.classList.toggle('left',x>innerWidth-300);
+   el.classList.toggle('bz-flip',x>innerWidth-300);
    say.textContent=txt;say.classList.add('show');
    el.classList.remove('joy');void el.offsetWidth;el.classList.add('joy');joyT=performance.now()+1400;
    clearTimeout(sayT);sayT=setTimeout(()=>{say.classList.remove('show');el.classList.remove('joy')},4800);
@@ -1861,6 +1865,7 @@ boot();requestAnimationFrame(render);
    const k=(used[p]||0);used[p]=k+1;setTimeout(()=>{if(pageNow()===p)speak(list[k%list.length])},900)},400);
  setInterval(()=>{if(pending&&seen){const t=pending;pending='';setTimeout(()=>speak(t),700)}},300);
  let wasBtn=false;setInterval(()=>{if(hoverBtn&&!wasBtn&&performance.now()>quietUntil&&Math.random()<.35)speak(BTN[Math.floor(Math.random()*BTN.length)]);wasBtn=hoverBtn},300);
+ if(dock){x=innerWidth-72;y=innerHeight-170;el.querySelector('svg').addEventListener('click',e=>{e.stopPropagation();el.classList.remove('sleep');lastMove=performance.now();const l=LINES[pageNow()]||['Hi! Have a look around.'];speak(l[Math.floor(Math.random()*l.length)])})}
  setOn(on);requestAnimationFrame(loop);
 })();
 </script>

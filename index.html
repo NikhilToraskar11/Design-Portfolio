@@ -853,15 +853,18 @@ const PHONE_LINK = "+918850736354";        // used for the tap-to-call link
 const LINKS = { linkedin:"", behance:"", resume:"" };
 const CAREER_START = "2024-12-17";         // first day at FlexiLoans (internship)
 /* WORK = the case-study cards on the home page.
-   To attach a case study to a card, add these two fields to it:
-     file:"my-case-study.html",      the case study page (upload it next to index.html)
-     cover:"cs/my-folder/cover.jpg",  optional: image shown on the card's device mockup
-   The "Read the case study" button then appears automatically. */
+   EASY WAY: upload a page with the card's file name (see each card's file:"...") and the
+   'Read the case study' button appears by itself. No editing needed.
+     Design system card   -> design-system-case-study.html
+     Bank statement card  -> bank-statement-case-study.html
+     CloudNBFC card       -> cloudnbfc-case-study.html
+     SCF website card     -> scf-website-case-study.html
+   Optional cover image on the card's mockup: add cover:"path/to/image.jpg". */
 const WORK = [
-  {key:"ds-lib", name:"FL Design System", t:'One system, <span class="serif">every</span> screen', bg:"#E9F2FF", dev:"browser", acc:["#0D99FF","#111114"],
+  {key:"ds-lib", file:"design-system-case-study.html", name:"FL Design System", t:'One system, <span class="serif">every</span> screen', bg:"#E9F2FF", dev:"browser", acc:["#0D99FF","#111114"],
    d:"Consolidated FlexiLoans’ Figma component library into a React, TypeScript and Tailwind library that engineers ship from directly.",
    f:[["Role","Owner"],["Scope","36 components"],["Stack","Figma, React"]], note:"Every component maps one-to-one from Figma to code, so design and dev never drift."},
-  {key:"bank", name:"Bank statement upload", t:'Statements, <span class="serif">minus</span> the stress', bg:"#E3F6EA", dev:"phone", acc:["#14AE5C","#111114"],
+  {key:"bank", file:"bank-statement-case-study.html", name:"Bank statement upload", t:'Statements, <span class="serif">minus</span> the stress', bg:"#E3F6EA", dev:"phone", acc:["#14AE5C","#111114"],
    d:"Reworked how borrowers share bank statements during a loan application, the step where many applications stall.",
    f:[["Role","Lead designer"],["Platform","Mobile"],["Focus","Drop-offs"]], note:"The biggest win came from mapping every failure path, not the happy path."},
   {key:"cloud", name:"CloudNBFC lender portal",  file:"cloudnbfc-case-study.html", t:'A portal lenders <span class="serif">enjoy</span>', bg:"#FFF1EB", dev:"browser", acc:["#F2A890","#111114"],
@@ -870,7 +873,7 @@ const WORK = [
   {key:"lap", name:"Loan Against Property", t:'Property loans, <span class="serif">credit-ready</span>', bg:"#FFF6C7", dev:"browser", acc:["#9747FF","#111114"], cs:true,
    d:"Turned a PM’s functional wireframe into four credit screens for FlexiLoans’ new Loan Against Property product: collateral, balance transfer, 12 months of banking and eligibility.",
    f:[["Role","UI/UX designer"],["Timeline","1 week"],["Platform","Internal LOS"]], note:"The wireframe had the right rules. The work was making every choice that changes the loan amount a deliberate one."},
-  {key:"scf", name:"SCF marketing website", t:'B2B finance in <span class="serif">plain</span> words', bg:"#F1F1F3", dev:"browser", acc:["#FF3D8B","#111114"],
+  {key:"scf", file:"scf-website-case-study.html", name:"SCF marketing website", t:'B2B finance in <span class="serif">plain</span> words', bg:"#F1F1F3", dev:"browser", acc:["#FF3D8B","#111114"],
    d:"Designed the supply chain finance site on flexigro.com, explaining a B2B financing product to anchors and distributors in plain language.",
    f:[["Role","Designer"],["Platform","Responsive web"],["Audience","Businesses"]], note:"Rewrote the story around the distributor’s problem, not the product’s features."},
 ];
@@ -1020,7 +1023,7 @@ WORK.forEach((w,i)=>{
    <div class="f-pad" style="background:${w.bg}"><div class="wgrid">
     <div class="txt"><div class="idx rv"><span style="display:flex;gap:10px;align-items:center"><b>0${i+1}</b>Case study</span><a class="back" href="#" data-go="work">↑ All work</a></div>
      <div><h2 class="rv">${w.t}</h2><p class="rv">${w.d}</p>
-      <div class="facts rv">${w.f.map(x=>`<div><small>${x[0]}</small>${x[1]}</div>`).join('')}</div>${(w.cs||w.file)?`<a class="btnf cs-btn rv" href="#${w.key}-case-study" data-cs="${w.key}" style="background:#111114;color:#fff">Read the case study →</a>`:''}</div></div>
+      <div class="facts rv">${w.f.map(x=>`<div><small>${x[0]}</small>${x[1]}</div>`).join('')}</div>${(w.cs||w.file)?`<a class="btnf cs-btn rv" href="#${w.key}-case-study" data-cs="${w.key}"${w.cs?'':' hidden data-auto="'+w.file+'"'} style="background:#111114;color:#fff">Read the case study →</a>`:''}</div></div>
     ${dev}
    </div></div>`,
    {type:"Case study "+(i+1),kv:w.f,fills:[w.bg,w.acc[0],w.acc[1]],note:w.note});
@@ -1664,6 +1667,8 @@ const csInit=c=>{
 CASES.lap='<div class="cs-frame"><div class="cs-fbar"><button class="cs-btns" data-cs-close>Close</button><span>Loan Against Property · case study</span><a href="lap-case-study.html" target="_blank" rel="noopener">Open full page ↗</a><a href="lap-credit-screens.html" target="_blank" rel="noopener">Live screens ↗</a></div><iframe src="lap-case-study.html" title="Loan Against Property case study" loading="lazy"></iframe></div>';
 const csFrame=(file,title)=>'<div class="cs-frame"><div class="cs-fbar"><button class="cs-btns" data-cs-close>Close</button><span>'+title+' · case study</span><a href="'+file+'" target="_blank" rel="noopener">Open full page ↗</a></div><iframe src="'+file+'" title="'+title+' case study" loading="lazy"></iframe></div>';
 WORK.forEach(w=>{if(w.file&&!CASES[w.key])CASES[w.key]=csFrame(w.file,w.name)});
+/* Auto-show 'Read the case study' when the card's file has been uploaded */
+document.querySelectorAll('[data-auto]').forEach(b=>{fetch(b.dataset.auto,{method:'HEAD',cache:'no-store'}).then(r=>{if(r.ok)b.hidden=false}).catch(()=>{})});
 const openCS=k=>{if(!CASES[k])return;csLast=document.activeElement;if(csKey!==k){const c=csEl.querySelector('.cs-c');c.innerHTML=CASES[k];csKey=k;csInit(c)}
   csEl.querySelector('.cs-doc').setAttribute('aria-label',(WORK.find(w=>w.key===k)||{}).name+' case study');
   csScroll.scrollTop=0;root.classList.add('cs-on');csEl.classList.add('open');csEl.setAttribute('aria-hidden','false');setTimeout(()=>csScroll.focus({preventScroll:true}),30);

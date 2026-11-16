@@ -20,14 +20,19 @@ UI/UX design portfolio of Nikhil Toraskar.
 
 All data shown in the screens is sample data.
 
-## Add a new case study (e.g. CloudNBFC)
-1. **Upload the page:** Add file → Upload files → drop `cloudnbfc-case-study.html` into the root (next to `index.html`). Commit.
-2. **Upload its images (if it uses image files):** put them in a folder such as `cs/cloud/` and make sure the HTML points to `cs/cloud/...`. A single self-contained HTML file needs no images folder.
-3. **Optional cover:** upload `cs/cloud/cover.jpg` (a screenshot of the main screen, 1600 px wide works well).
-4. **Connect it to the card:** open `index.html` → ✏️ → Ctrl+F `key:"cloud"` → right after `name:"CloudNBFC lender portal",` add:
-   ```
-   file:"cloudnbfc-case-study.html", cover:"cs/cloud/cover.jpg",
-   ```
-   Commit. The card now shows **Read the case study →**, which opens the page full screen.
+## Add a case study (one step)
+Upload the page with the right file name: **Add file → Upload files → drop the file → Commit changes**.
+The card's **Read the case study →** button appears by itself within a minute or two.
 
-A brand-new project (no card yet): copy one whole `{key:... },` block inside `const WORK = [` in `index.html`, give it a new unique `key`, change the text, and add `file` / `cover` as above.
+| Card on the home page | Upload this file name |
+|---|---|
+| FL Design System | `design-system-case-study.html` |
+| Bank statement upload | `bank-statement-case-study.html` |
+| CloudNBFC lender portal | `cloudnbfc-case-study.html` |
+| Loan Against Property | `lap-case-study.html` (already there) |
+| SCF marketing website | `scf-website-case-study.html` |
+
+To **update** a case study, upload a new version with the same name. To **remove** one, delete the file.
+A single self-contained HTML file (images inside it) is the easiest. If it uses image files, upload them too and keep the paths the HTML expects.
+
+**New project that has no card yet:** in `index.html`, copy one whole `{key:... },` block inside `const WORK = [`, give it a new `key`, new text and a new `file:"something-case-study.html"`. Commit, then upload that file.

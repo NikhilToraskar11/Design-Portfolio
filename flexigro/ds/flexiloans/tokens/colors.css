@@ -1,0 +1,287 @@
+/* FlexiLoans Design System — color roles
+   Decoded from FL - Components 2.fig (FL-Primitives + FL-Semantic variable
+   collections, 836 colour variables). Every value below is looked up by its
+   Figma variable name, so this file cannot drift from the Figma source.
+   Structure and role names are Material Design 3.
+
+   Anchors: primary action Primary-2-V2 #00B9F1 · brand navy Primary-1 #0A3254
+   · status Error #EB002B / Success #00851D / Pending #F29900 /
+   Important #F56600 / In-Progress #0071EB
+
+   Add data-a11y="aa" alongside data-theme to swap the pairs that fail
+   WCAG AA for the passing step of FL's own ramp. See the Accessibility card.
+*/
+
+[data-theme="light"], :root {
+  --md-sys-color-primary: #00B9F1;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-hover: #33C7F4;
+  --md-sys-color-primary-pressed: #0094C1;
+  --md-sys-color-primary-focus-outline: #004A60;
+  --md-sys-color-primary-container: #E6F8FE;
+  --md-sys-color-on-primary-container: #004A60;
+  --md-sys-color-inverse-primary: #33C7F4;
+  --md-sys-color-secondary: #0A3254;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #CCF1FC;
+  --md-sys-color-on-secondary-container: #004A60;
+  --md-sys-color-tertiary: #356174;
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #D9EDF2;
+  --md-sys-color-on-tertiary-container: #163941;
+  --md-sys-color-error: #EB002B;
+  --md-sys-color-on-error: #FFFFFF;
+  --md-sys-color-error-container: #FDE1E6;
+  --md-sys-color-on-error-container: #8D001A;
+  --md-sys-color-success: #00851D;
+  --md-sys-color-on-success: #FFFFFF;
+  --md-sys-color-success-container: #BBEFC6;
+  --md-sys-color-on-success-container: #005011;
+  --md-sys-color-warning: #F29900;
+  --md-sys-color-on-warning: #301F00;
+  --md-sys-color-warning-container: #F9F3DD;
+  --md-sys-color-on-warning-container: #613D00;
+  --md-sys-color-important: #F56600;
+  --md-sys-color-on-important: #000000;
+  --md-sys-color-important-container: #FFE5D2;
+  --md-sys-color-on-important-container: #933D00;
+  --md-sys-color-info: #0071EB;
+  --md-sys-color-on-info: #FFFFFF;
+  --md-sys-color-info-container: #C3E0FF;
+  --md-sys-color-on-info-container: #00448D;
+  --md-sys-color-surface: #FFFFFF;
+  --md-sys-color-surface-dim: #E1E1E1;
+  --md-sys-color-surface-bright: #FFFFFF;
+  --md-sys-color-surface-container-lowest: #FFFFFF;
+  --md-sys-color-surface-container-low: #F1F5F8;
+  --md-sys-color-surface-container: #F2F1F1;
+  --md-sys-color-surface-container-high: #E1E1E1;
+  --md-sys-color-surface-container-highest: #D6D6D6;
+  --md-sys-color-on-surface: #0A3254;
+  --md-sys-color-on-surface-variant: #265074;
+  --md-sys-color-surface-variant: #F1F5F8;
+  --md-sys-color-outline: #5D8BB3;
+  --md-sys-color-outline-variant: #D6D6D6;
+  --md-sys-color-inverse-surface: #0A3254;
+  --md-sys-color-inverse-on-surface: #FFFFFF;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-surface-tint: #00B9F1;
+  --md-sys-color-disabled-container: #F2F1F1;
+  --md-sys-color-disabled-fill: #D6D6D6;
+  --md-sys-color-disabled-content: #898989;
+  --md-sys-color-disabled-outline: #898989;
+  --md-sys-color-read-only-text: #6B6B6B;
+  --md-sys-color-accent: #43CEFF;
+  --md-sys-color-on-accent: #0A3254;
+  --md-sys-color-accent-strong: #0094C1;
+  --md-sys-color-accent-container: #ECFAFF;
+  --md-sys-color-on-accent-container: #0D3848;
+
+  /* rgb channel triplets, for state layers and shadows */
+  --on-surface-rgb: 10 50 84; /* @kind other */
+  --primary-rgb: 0 185 241; /* @kind other */
+  --on-primary-rgb: 255 255 255; /* @kind other */
+  --on-surface-variant-rgb: 38 80 116; /* @kind other */
+  --on-secondary-container-rgb: 0 74 96; /* @kind other */
+  --shadow-rgb: 0 0 0; /* @kind other */
+  --scrim-rgb: 0 0 0; /* @kind other */
+  --error-rgb: 235 0 43; /* @kind other */
+  --surface-rgb: 255 255 255; /* @kind other */
+  --surface-variant-rgb: 241 245 248; /* @kind other */
+  --outline-rgb: 93 139 179; /* @kind other */
+  --accent-rgb: 67 206 255; /* @kind other */
+  --success-rgb: 0 133 29; /* @kind other */
+  --warning-rgb: 242 153 0; /* @kind other */
+  --info-rgb: 0 113 235; /* @kind other */
+  --important-rgb: 245 102 0; /* @kind other */
+  --secondary-rgb: 10 50 84; /* @kind other */
+  --disabled-content-rgb: 137 137 137; /* @kind other */
+
+  /* Hyperlink — the Figma light-theme colours diagram sets it to Progress Blue.
+     Dark theme uses Primary-2-V2 cyan, per the same diagram. */
+  --md-sys-color-link: #0071EB;
+  --md-sys-color-link-hover: #005ABC;
+  --md-sys-color-link-visited: #00448D;
+
+  /* AA-safe variants, always available even without data-a11y */
+  --md-sys-color-primary-text: #006F91;
+  --md-sys-color-primary-indicator: #0094C1;
+  --md-sys-color-outline-text: #416E93;
+  --md-sys-color-disabled-on-fill: #595959;
+}
+
+[data-theme="dark"] {
+  --md-sys-color-primary: #00B9F1;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-hover: #33C7F4;
+  --md-sys-color-primary-pressed: #0094C1;
+  --md-sys-color-primary-focus-outline: #004A60;
+  --md-sys-color-primary-container: #E6F8FE;
+  --md-sys-color-on-primary-container: #004A60;
+  --md-sys-color-inverse-primary: #0094C1;
+  --md-sys-color-secondary: #86B8E2;
+  --md-sys-color-on-secondary: #030F19;
+  --md-sys-color-secondary-container: #CCF1FC;
+  --md-sys-color-on-secondary-container: #004A60;
+  --md-sys-color-tertiary: #9DB4BF;
+  --md-sys-color-on-tertiary: #0B1317;
+  --md-sys-color-tertiary-container: #203A46;
+  --md-sys-color-on-tertiary-container: #D9EDF2;
+  --md-sys-color-error: #FDE1E6;
+  --md-sys-color-on-error: #BC0022;
+  --md-sys-color-error-container: #8D001A;
+  --md-sys-color-on-error-container: #FDE1E6;
+  --md-sys-color-success: #BBEFC6;
+  --md-sys-color-on-success: #006A17;
+  --md-sys-color-success-container: #005011;
+  --md-sys-color-on-success-container: #BBEFC6;
+  --md-sys-color-warning: #F9F3DD;
+  --md-sys-color-on-warning: #613D00;
+  --md-sys-color-warning-container: #613D00;
+  --md-sys-color-on-warning-container: #F9F3DD;
+  --md-sys-color-important: #FFE5D2;
+  --md-sys-color-on-important: #933D00;
+  --md-sys-color-important-container: #933D00;
+  --md-sys-color-on-important-container: #FFE5D2;
+  --md-sys-color-info: #C3E0FF;
+  --md-sys-color-on-info: #005ABC;
+  --md-sys-color-info-container: #00448D;
+  --md-sys-color-on-info-container: #C3E0FF;
+  --md-sys-color-surface: #030F19;
+  --md-sys-color-surface-dim: #020A11;
+  --md-sys-color-surface-bright: #0A3254;
+  --md-sys-color-surface-container-lowest: #020A11;
+  --md-sys-color-surface-container-low: #041422;
+  --md-sys-color-surface-container: #061E32;
+  --md-sys-color-surface-container-high: #082843;
+  --md-sys-color-surface-container-highest: #0A3254;
+  --md-sys-color-on-surface: #FFFFFF;
+  --md-sys-color-on-surface-variant: #78A9D2;
+  --md-sys-color-surface-variant: #061E32;
+  --md-sys-color-outline: #5D8BB3;
+  --md-sys-color-outline-variant: #265074;
+  --md-sys-color-inverse-surface: #FFFFFF;
+  --md-sys-color-inverse-on-surface: #0A3254;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-surface-tint: #00B9F1;
+  --md-sys-color-disabled-container: #F2F1F1;
+  --md-sys-color-disabled-fill: #D6D6D6;
+  --md-sys-color-disabled-content: #898989;
+  --md-sys-color-disabled-outline: #898989;
+  --md-sys-color-read-only-text: #6B6B6B;
+  --md-sys-color-accent: #43CEFF;
+  --md-sys-color-on-accent: #0A3254;
+  --md-sys-color-accent-strong: #66D5F7;
+  --md-sys-color-accent-container: #0D3848;
+  --md-sys-color-on-accent-container: #ECFAFF;
+
+  /* rgb channel triplets, for state layers and shadows */
+  --on-surface-rgb: 255 255 255; /* @kind other */
+  --primary-rgb: 0 185 241; /* @kind other */
+  --on-primary-rgb: 255 255 255; /* @kind other */
+  --on-surface-variant-rgb: 120 169 210; /* @kind other */
+  --on-secondary-container-rgb: 0 74 96; /* @kind other */
+  --shadow-rgb: 0 0 0; /* @kind other */
+  --scrim-rgb: 0 0 0; /* @kind other */
+  --error-rgb: 253 225 230; /* @kind other */
+  --surface-rgb: 3 15 25; /* @kind other */
+  --surface-variant-rgb: 6 30 50; /* @kind other */
+  --outline-rgb: 93 139 179; /* @kind other */
+  --accent-rgb: 67 206 255; /* @kind other */
+  --success-rgb: 225 243 229; /* @kind other */
+  --warning-rgb: 254 244 227; /* @kind other */
+  --info-rgb: 225 239 253; /* @kind other */
+  --important-rgb: 254 237 225; /* @kind other */
+  --secondary-rgb: 134 184 226; /* @kind other */
+  --disabled-content-rgb: 137 137 137; /* @kind other */
+
+  --md-sys-color-link: #00B9F1;
+  --md-sys-color-link-hover: #66D5F7;
+  --md-sys-color-link-visited: #99E3F9;
+
+  --md-sys-color-primary-text: #99E3F9;
+  --md-sys-color-primary-indicator: #66D5F7;
+  --md-sys-color-outline-text: #94C7F2;
+  --md-sys-color-disabled-on-fill: #595959;
+}
+
+/* ── WCAG AA remaps ─────────────────────────────────────────────────────
+   Only the roles the audit found failing. Each replacement is a step of the
+   same FlexiLoans ramp, so nothing off-palette is introduced. */
+[data-a11y="aa"], [data-theme="light"][data-a11y="aa"] {
+  --md-sys-color-primary: #006F91;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-hover: #004A60;
+  --md-sys-color-primary-pressed: #003848;
+  --md-sys-color-primary-text: #006F91;
+  --md-sys-color-primary-indicator: #0094C1;
+  --md-sys-color-accent-strong: #0094C1;
+  --md-sys-color-surface-tint: #006F91;
+  --md-sys-color-inverse-primary: #33C7F4;
+  --md-sys-color-disabled-content: #6B6B6B;
+  --md-sys-color-disabled-on-fill: #595959;
+  --md-sys-color-outline-text: #416E93;
+  --md-sys-color-on-error-container: #BC0022;
+  --md-sys-color-on-important-container: #933D00;
+  --md-sys-color-on-info-container: #005ABC;
+
+  /* rgb channel triplets, for state layers and shadows */
+  --on-surface-rgb: 10 50 84; /* @kind other */
+  --primary-rgb: 0 111 145; /* @kind other */
+  --on-primary-rgb: 255 255 255; /* @kind other */
+  --on-surface-variant-rgb: 38 80 116; /* @kind other */
+  --on-secondary-container-rgb: 0 74 96; /* @kind other */
+  --shadow-rgb: 0 0 0; /* @kind other */
+  --scrim-rgb: 0 0 0; /* @kind other */
+  --error-rgb: 235 0 43; /* @kind other */
+  --surface-rgb: 255 255 255; /* @kind other */
+  --surface-variant-rgb: 241 245 248; /* @kind other */
+  --outline-rgb: 93 139 179; /* @kind other */
+  --accent-rgb: 67 206 255; /* @kind other */
+  --success-rgb: 0 133 29; /* @kind other */
+  --warning-rgb: 242 153 0; /* @kind other */
+  --info-rgb: 0 113 235; /* @kind other */
+  --important-rgb: 245 102 0; /* @kind other */
+  --secondary-rgb: 10 50 84; /* @kind other */
+  --disabled-content-rgb: 107 107 107; /* @kind other */
+}
+
+[data-theme="dark"][data-a11y="aa"] {
+  --md-sys-color-primary: #66D5F7;
+  --md-sys-color-on-primary: #002530;
+  --md-sys-color-primary-hover: #99E3F9;
+  --md-sys-color-primary-pressed: #B3EAFB;
+  --md-sys-color-primary-text: #99E3F9;
+  --md-sys-color-primary-indicator: #66D5F7;
+  --md-sys-color-accent-strong: #66D5F7;
+  --md-sys-color-surface-tint: #66D5F7;
+  --md-sys-color-inverse-primary: #006F91;
+  --md-sys-color-disabled-content: #C7C7C7;
+  --md-sys-color-disabled-on-fill: #595959;
+  --md-sys-color-outline-text: #94C7F2;
+  --md-sys-color-on-error-container: #FDE1E6;
+  --md-sys-color-on-important-container: #FEEDE1;
+  --md-sys-color-on-info-container: #E1EFFD;
+
+  /* rgb channel triplets, for state layers and shadows */
+  --on-surface-rgb: 255 255 255; /* @kind other */
+  --primary-rgb: 102 213 247; /* @kind other */
+  --on-primary-rgb: 0 37 48; /* @kind other */
+  --on-surface-variant-rgb: 120 169 210; /* @kind other */
+  --on-secondary-container-rgb: 0 74 96; /* @kind other */
+  --shadow-rgb: 0 0 0; /* @kind other */
+  --scrim-rgb: 0 0 0; /* @kind other */
+  --error-rgb: 253 225 230; /* @kind other */
+  --surface-rgb: 3 15 25; /* @kind other */
+  --surface-variant-rgb: 6 30 50; /* @kind other */
+  --outline-rgb: 93 139 179; /* @kind other */
+  --accent-rgb: 67 206 255; /* @kind other */
+  --success-rgb: 225 243 229; /* @kind other */
+  --warning-rgb: 254 244 227; /* @kind other */
+  --info-rgb: 225 239 253; /* @kind other */
+  --important-rgb: 254 237 225; /* @kind other */
+  --secondary-rgb: 134 184 226; /* @kind other */
+  --disabled-content-rgb: 199 199 199; /* @kind other */
+}

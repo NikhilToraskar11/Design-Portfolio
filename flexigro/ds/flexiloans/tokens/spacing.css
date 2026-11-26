@@ -1,0 +1,24 @@
+/* FlexiLoans Design System — spacing and breakpoints
+   Source: FL - Components 2.fig, decoded via the attached fl-design-system codebase.
+   Measurements are Material Design 3 (material-web v0.192 / androidx Compose M3). */
+
+:root {
+/* ── spacing: 4dp grid ───────────────────────────────────────────────── */
+  --fl-space-1: 4px;
+  --fl-space-2: 8px;
+  --fl-space-3: 12px;
+  --fl-space-4: 16px;
+  --fl-space-5: 20px;
+  --fl-space-6: 24px;
+  --fl-space-8: 32px;
+  --fl-space-10: 40px;
+  --fl-space-12: 48px;
+  --fl-space-14: 56px;
+  --fl-space-16: 64px;
+/* ── breakpoints (M3 window size classes) ────────────────────────────── */
+  --fl-bp-compact: 0px; /* @kind other */      /* < 600dp  — phone portrait */
+  --fl-bp-medium: 600px; /* @kind other */     /* 600–839  — tablet portrait, phone landscape */
+  --fl-bp-expanded: 840px; /* @kind other */   /* 840–1199 — tablet landscape, small desktop */
+  --fl-bp-large: 1200px; /* @kind other */     /* 1200–1599 */
+  --fl-bp-xlarge: 1600px; /* @kind other */    /* ≥ 1600 */
+}

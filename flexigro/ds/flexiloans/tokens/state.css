@@ -1,0 +1,30 @@
+/* FlexiLoans Design System — state layers
+   Source: FL - Components 2.fig, decoded via the attached fl-design-system codebase.
+   Measurements are Material Design 3 (material-web v0.192 / androidx Compose M3). */
+
+:root {
+/* ── state layers ────────────────────────────────────────────────────── */
+  --md-sys-state-hover-state-layer-opacity: 0.08; /* @kind other */
+  --md-sys-state-focus-state-layer-opacity: 0.12; /* @kind other */
+  --md-sys-state-pressed-state-layer-opacity: 0.12; /* @kind other */
+  --md-sys-state-dragged-state-layer-opacity: 0.16; /* @kind other */
+  --md-sys-state-disabled-container-opacity: 0.12; /* @kind other */
+  --md-sys-state-disabled-content-opacity: 0.38; /* @kind other */
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   STATE LAYER — attach .fl-state to any interactive element.
+   The layer is the element's own currentColor over its container, per M3.
+   ══════════════════════════════════════════════════════════════════════════ */
+.fl-state { position: relative; overflow: hidden; isolation: isolate; }
+.fl-state::before {
+  content: ""; position: absolute; inset: 0; background: currentColor; opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+}
+.fl-state:hover::before        { opacity: var(--md-sys-state-hover-state-layer-opacity); }
+.fl-state:focus-visible::before{ opacity: var(--md-sys-state-focus-state-layer-opacity); }
+.fl-state:active::before       { opacity: var(--md-sys-state-pressed-state-layer-opacity); }
+.fl-state:focus-visible        { outline: 3px solid var(--md-sys-color-accent-strong); outline-offset: 2px; }
+.fl-state:disabled, .fl-state[aria-disabled="true"] { pointer-events: none; }
+.fl-state:disabled::before, .fl-state[aria-disabled="true"]::before { opacity: 0; }

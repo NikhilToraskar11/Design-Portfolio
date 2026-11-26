@@ -1,0 +1,33 @@
+/* FlexiLoans Design System — motion
+   Source: FL - Components 2.fig, decoded via the attached fl-design-system codebase.
+   Measurements are Material Design 3 (material-web v0.192 / androidx Compose M3). */
+
+:root {
+/* ── motion: easing ──────────────────────────────────────────────────── */
+  --md-sys-motion-easing-linear: cubic-bezier(0, 0, 1, 1); /* @kind other */
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1); /* @kind other */
+  --md-sys-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1); /* @kind other */
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15); /* @kind other */
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1); /* @kind other */
+  --md-sys-motion-easing-legacy: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+
+/* ── motion: duration ────────────────────────────────────────────────── */
+  --md-sys-motion-duration-short1: 50ms; /* @kind other */
+  --md-sys-motion-duration-short2: 100ms; /* @kind other */
+  --md-sys-motion-duration-short3: 150ms; /* @kind other */
+  --md-sys-motion-duration-short4: 200ms; /* @kind other */
+  --md-sys-motion-duration-medium1: 250ms; /* @kind other */
+  --md-sys-motion-duration-medium2: 300ms; /* @kind other */
+  --md-sys-motion-duration-medium3: 350ms; /* @kind other */
+  --md-sys-motion-duration-medium4: 400ms; /* @kind other */
+  --md-sys-motion-duration-long1: 450ms; /* @kind other */
+  --md-sys-motion-duration-long2: 500ms; /* @kind other */
+  --md-sys-motion-duration-long3: 550ms; /* @kind other */
+  --md-sys-motion-duration-long4: 600ms; /* @kind other */
+  --md-sys-motion-duration-extra-long1: 700ms; /* @kind other */
+  --md-sys-motion-duration-extra-long2: 800ms; /* @kind other */
+  --md-sys-motion-duration-extra-long3: 900ms; /* @kind other */
+  --md-sys-motion-duration-extra-long4: 1000ms; /* @kind other */
+}

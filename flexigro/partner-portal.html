@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Partner portal · Coming soon</title>
+<meta name="description" content="The FlexiLoans partner portal redesign by Nikhil Toraskar is in progress. Upcoming case study.">
+<link rel="stylesheet" href="ds/styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:#F1F5F8;color:#0A3254;font-family:Inter,-apple-system,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.top{width:100%;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:20px 24px}
+.top img{height:36px;display:block}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:14px;line-height:20px;font-weight:500;color:#265074;padding:6px 12px;border-radius:30px}
+.back:hover{background:#ECFAFF;color:#0A3254}
+main{flex:1;justify-content:center;width:100%;max-width:760px;margin:0 auto;padding:24px 24px 72px;display:flex;flex-direction:column;align-items:center;gap:40px;text-align:center}
+main .win{width:100%;text-align:left}
+.badges{justify-content:center}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.badge{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:30px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.4px}
+.b1{background:#C3E0FF;color:#00448D}
+.b1 i{width:6px;height:6px;border-radius:50%;background:#0071EB;animation:pulse 1.6s ease-in-out infinite}
+.b2{background:#D9EDF2;color:#163941}
+@keyframes pulse{50%{opacity:.3}}
+h1{margin:0;font-size:36px;line-height:44px;font-weight:700;text-wrap:balance}
+h1 span{color:#00B9F1}
+p{margin:16px 0 0;font-size:16px;line-height:24px;color:#265074;max-width:480px}
+.list{margin:24px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:20px;color:#0A3254}
+.list svg{flex:0 0 auto;margin-top:2px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:10px 16px;border-radius:30px;font-size:14px;line-height:20px;font-weight:500;letter-spacing:.25px}
+.btn.p{background:#00B9F1;color:#fff}.btn.p:hover{background:#33C7F4}.btn.p:active{background:#0094C1}
+.btn.s{background:#fff;color:#0A3254;border:1px solid #0A3254}.btn.s:hover{background:#ECFAFF}
+.btn:focus-visible,.back:focus-visible{outline:3px solid #0094C1;outline-offset:2px}
+/* skeleton portal */
+.win{background:#fff;border:1px solid #D6D6D6;border-radius:12px;box-shadow:0 2px 4px rgb(0 0 0 / .1);overflow:hidden;position:relative}
+.bar{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid #D6D6D6}
+.bar i{width:10px;height:10px;border-radius:50%;background:#E1E1E1}
+.app{display:grid;grid-template-columns:150px 1fr;min-height:380px}
+.side{background:#0A3254;padding:18px 14px;display:flex;flex-direction:column;gap:12px}
+.side b{display:block;height:10px;border-radius:6px;background:rgb(255 255 255 / .18)}
+.side b:first-child{width:70%;height:14px;background:rgb(255 255 255 / .45);margin-bottom:10px}
+.side b.on{background:#00B9F1}
+.pane{padding:20px;display:flex;flex-direction:column;gap:16px}
+.sk{border-radius:6px;background:linear-gradient(90deg,#F1F5F8 0%,#E6F8FE 50%,#F1F5F8 100%);background-size:200% 100%;animation:sh 1.8s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kpi{border:1px solid #D6D6D6;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.rows{border:1px solid #D6D6D6;border-radius:12px;overflow:hidden}
+.row{display:grid;grid-template-columns:2fr 1fr 1fr 70px;gap:14px;padding:13px 14px;border-top:1px solid #F2F1F1;align-items:center}
+.row:first-child{border-top:0;background:#F1F5F8}
+.pill{height:20px;border-radius:30px;background:#BBEFC6}
+.pill.w{background:#F9F3DD}
+.stamp{position:absolute;right:18px;bottom:18px;display:flex;align-items:center;gap:8px;background:#0A3254;color:#fff;border-radius:30px;padding:8px 14px;font-size:12px;font-weight:600;letter-spacing:.4px;box-shadow:0 2px 6px rgb(0 0 0 / .2)}
+footer{max-width:1200px;margin:0 auto;padding:24px;border-top:1px solid #D6D6D6;font-size:12px;line-height:16px;color:#265074;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{text-decoration:underline !important}
+@media (max-width:900px){main{gap:32px;padding-top:16px}h1{font-size:28px;line-height:36px}.app{grid-template-columns:70px 1fr}.row{grid-template-columns:2fr 1fr 60px}.row>:nth-child(3){display:none}}
+@media (prefers-reduced-motion:reduce){.sk,.b1 i{animation:none}}
+</style>
+</head>
+<body>
+<header class="top">
+ <a href="index.html" aria-label="FlexiLoans home"><img src="assets/logo-horizontal-deep-blue.svg" alt="FlexiLoans"></a>
+ <a class="back" href="index.html"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Back to website</a>
+</header>
+<main>
+ <section>
+  <div class="badges"><span class="badge b1"><i></i>Work in progress</span><span class="badge b2">Upcoming case study</span></div>
+  <h1>Partner portal is <span>in progress.</span></h1>
+ </section>
+ <div class="win" aria-hidden="true">
+  <div class="bar"><i></i><i></i><i></i></div>
+  <div class="app">
+   <div class="side"><b></b><b class="on"></b><b></b><b></b><b></b><b style="width:60%"></b></div>
+   <div class="pane">
+    <div class="sk" style="height:18px;width:40%"></div>
+    <div class="kpis">
+     <div class="kpi"><div class="sk" style="height:10px;width:60%"></div><div class="sk" style="height:20px;width:80%"></div></div>
+     <div class="kpi"><div class="sk" style="height:10px;width:50%"></div><div class="sk" style="height:20px;width:70%"></div></div>
+     <div class="kpi"><div class="sk" style="height:10px;width:65%"></div><div class="sk" style="height:20px;width:60%"></div></div>
+    </div>
+    <div class="rows">
+     <div class="row"><div class="sk" style="height:10px;width:50%"></div><div class="sk" style="height:10px"></div><div class="sk" style="height:10px"></div><div class="sk" style="height:10px"></div></div>
+     <div class="row"><div class="sk" style="height:12px"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px"></div><div class="pill"></div></div>
+     <div class="row"><div class="sk" style="height:12px;width:80%"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px"></div><div class="pill w"></div></div>
+     <div class="row"><div class="sk" style="height:12px;width:70%"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px"></div><div class="pill"></div></div>
+    </div>
+   </div>
+  </div>
+   </div>
+</main>
+</body>
+</html>

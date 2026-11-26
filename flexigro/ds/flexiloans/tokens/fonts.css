@@ -1,0 +1,21 @@
+/* FlexiLoans Design System — webfonts
+   Inter is the brand typeface for every text style in FL - Components 2.fig.
+   DM Mono is used for numeric/ID data (account numbers, GSTIN, amounts).
+
+   NO FONT BINARIES were supplied with the source codebase, so both families are
+   loaded from the Google Fonts CDN rather than shipped as @font-face src files.
+   Substitution: none — Inter and DM Mono are the real brand faces, only the
+   delivery mechanism differs. Drop .woff2 files into assets/fonts/ and replace
+   these @import lines with @font-face rules if self-hosting is required. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+/* Iconography. The FlexiLoans Figma icon library (79 icon types × 5 sizes,
+   outline + filled, light + dark) is name-for-name Material Symbols —
+   More-Icon-Vertical / Mail-Icon / Alternate-email-Icon / Video-cam-Icon /
+   Profile-Icon / Image-Icon map to more_vert / mail / alternate_email /
+   videocam / person / image. The real SVG binaries were NOT in the supplied
+   sources, so the variable Material Symbols Outlined font is loaded from CDN as
+   the substitution. FILL 0 = FL outline set, FILL 1 = FL filled set.
+   SUBSTITUTION — flagged in readme.md under ICONOGRAPHY. */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');

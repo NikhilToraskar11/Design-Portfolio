@@ -898,8 +898,8 @@ const WORK = [
    d:"Reworked how borrowers share bank statements during a loan application, the step where many applications stall.",
    f:[["Role","Lead designer"],["Platform","Mobile"],["Focus","Drop-offs"]], note:"The biggest win came from mapping every failure path, not the happy path."},
   {key:"cloud", name:"CloudNBFC lender portal",  file:"cloudnbfc-case-study.html", t:'A portal lenders <span class="serif">enjoy</span>', bg:"#FFF1EB", dev:"browser", acc:["#F2A890","#111114"],
-   d:"Redesigned the supply chain finance portal lenders use to review and manage financing, built end to end on the design system.",
-   f:[["Role","Product designer"],["Platform","Web app"],["Users","Lenders"]], note:"Rebuilt entirely with design system components, no one-off styles."},
+   d:"Redesigning the supply chain finance portal lenders use to review and manage financing, on the design system.",
+   f:[["Role","Product designer"],["Platform","Web app"],["Status","In progress"]], note:"Work in progress. Screens coming soon."},
   {key:"lap", name:"Loan Against Property", t:'Property loans, <span class="serif">credit-ready</span>', bg:"#FFF6C7", dev:"browser", acc:["#9747FF","#111114"], cs:true,
    d:"Turned a PM’s functional wireframe into four credit screens for FlexiLoans’ new Loan Against Property product: collateral, balance transfer, 12 months of banking and eligibility.",
    f:[["Role","UI/UX designer"],["Timeline","5 days"],["Platform","Internal LOS"]], note:"The wireframe had the right rules. The work was making every choice that changes the loan amount a deliberate one."},
@@ -908,9 +908,9 @@ const WORK = [
    f:[["Role","UI/UX designer"],["Timeline","1 week"],["Status","Launched"]], note:"Chosen by my design lead for the task, and I took it live with the DevOps and dev teams."},
 ];
 const WINS = [
-  {em:"🧩", t:"Built the FL component library", s:"36 components, Figma to React", c:"#FFE873", r:-4},
-  {em:"🎯", t:"Tamed 1,047 design tokens", s:"Primitives + semantic layer", c:"#FFC2DA", r:3},
-  {em:"🏦", t:"Shipped the CloudNBFC redesign", s:"Lender portal on the new system", c:"#B9F0CF", r:-2},
+  {em:"🧩", t:"Built the FL design system", s:"50+ components in Figma and Claude Design", c:"#FFE873", r:-4},
+  {em:"🎯", t:"Organised 1,047 Figma variables", s:"250+ of them semantic tokens", c:"#FFC2DA", r:3},
+  {em:"🏦", t:"Shipped LAP in about 10 days", s:"Sole designer, 5 days of design", c:"#B9F0CF", r:-2},
   {em:"📈", t:"Pitched app engagement to leadership", s:"Post-disbursement retention", c:"#C9E6FF", r:4},
   {em:"🏆", t:"Your next award goes here", s:"Edit WINS in the code", c:"#E2D3FF", r:-3},
 ];
@@ -975,8 +975,8 @@ addFrame('about','About me','f-about',`
   <button class="photo rv" data-slot="cv-about" aria-label="Add a photo of you"><span class="ph">Tap to add a photo of you at work</span></button>
   <div>
    <h2 class="rv">Hi, I’m <span class="serif">Nikhil.</span></h2>
-   <p class="rv">UI/UX Designer with 2 years of continuous experience, growing from intern to full-time designer. I design user-centered digital products, build and maintain scalable design systems, and improve user experiences through thoughtful, research-informed decisions.</p>
-   <p class="rv">I run design reviews to keep interfaces consistent and work closely with developers from handoff through implementation to ensure the final product matches the design intent.</p>
+   <p class="rv">I’m a UI/UX designer with 2 years of experience designing web and Android products, from user flows and wireframes to prototypes, design systems and design QA.</p>
+   <p class="rv">I own UI/UX for a supply chain finance product, built my company’s design system, and use AI-assisted design to move from requirements to release faster. I work closely with developers so what ships matches the design.</p>
    <div class="skills rv" aria-label="Skills"><span class="lab">What I do</span><div class="mq" data-dir="-1"><div class="tr"><span class="k">Product design</span><span>UX design</span><span>UI design</span><span class="k">Tokenization</span><span>User research</span><span>Information architecture</span><span>User flows</span><span>Wireframing</span><span>Interaction design</span><span class="dup k" aria-hidden="true">Product design</span><span class="dup" aria-hidden="true">UX design</span><span class="dup" aria-hidden="true">UI design</span><span class="dup k" aria-hidden="true">Tokenization</span><span class="dup" aria-hidden="true">User research</span><span class="dup" aria-hidden="true">Information architecture</span><span class="dup" aria-hidden="true">User flows</span><span class="dup" aria-hidden="true">Wireframing</span><span class="dup" aria-hidden="true">Interaction design</span></div></div><div class="mq" data-dir="1"><div class="tr"><span class="k">Design systems</span><span>Figma variables</span><span>Component libraries</span><span>Auto layout</span><span class="k">Prototyping</span><span>Design QA</span><span>Developer handoff</span><span>Accessibility</span><span>Figma</span><span>FigJam</span><span>BrowserStack</span><span>Jira</span><span>Claude</span><span class="dup k" aria-hidden="true">Design systems</span><span class="dup" aria-hidden="true">Figma variables</span><span class="dup" aria-hidden="true">Component libraries</span><span class="dup" aria-hidden="true">Auto layout</span><span class="dup k" aria-hidden="true">Prototyping</span><span class="dup" aria-hidden="true">Design QA</span><span class="dup" aria-hidden="true">Developer handoff</span><span class="dup" aria-hidden="true">Accessibility</span><span class="dup" aria-hidden="true">Figma</span><span class="dup" aria-hidden="true">FigJam</span><span class="dup" aria-hidden="true">BrowserStack</span><span class="dup" aria-hidden="true">Jira</span><span class="dup" aria-hidden="true">Claude</span></div></div></div>
   </div></div></div>`,
  {type:"About",kv:[["Role","UI/UX designer"],["Focus","Web and mobile products"],["Tools","Figma, React"]],fills:["#EFEAFF","#9747FF","#111114"]});
@@ -1756,7 +1756,7 @@ const csInit=c=>{
  if('IntersectionObserver'in window){csObs&&csObs.disconnect();csObs=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>{const on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('on',on);if(on){const bar=a.parentNode;bar.scrollTo({left:a.offsetLeft-bar.clientWidth/2+a.clientWidth/2,behavior:'smooth'})}})}})},{root:csScroll,rootMargin:'-30% 0px -60% 0px'});
   links.forEach(a=>{const s=c.querySelector(a.getAttribute('href'));s&&csObs.observe(s)})}
 };
-CASES.lap='<div class="cs-frame"><div class="cs-fbar"><button class="cs-btns" data-cs-close>Close</button><span>Loan Against Property · case study</span><a href="lap-case-study.html" target="_blank" rel="noopener">Open full page ↗</a><a href="lap-credit-screens.html" target="_blank" rel="noopener">Live screens ↗</a></div><iframe src="lap-case-study.html" title="Loan Against Property case study" loading="lazy"></iframe></div>';
+CASES.lap='<div class="cs-frame"><div class="cs-fbar"><button class="cs-btns" data-cs-close>Close</button><span>Loan Against Property · case study</span><a href="lap-case-study.html" target="_blank" rel="noopener">Open full page ↗</a><a href="lap-credit-screens.html" target="_blank" rel="noopener">Live screens ↗</a><a href="lap-credit-screens-in-los.html" target="_blank" rel="noopener">Inside the LOS ↗</a></div><iframe src="lap-case-study.html" title="Loan Against Property case study" loading="lazy"></iframe></div>';
 const csFrame=(file,title)=>'<div class="cs-frame"><div class="cs-fbar"><button class="cs-btns" data-cs-close>Close</button><span>'+title+' · case study</span><a href="'+file+'" target="_blank" rel="noopener">Open full page ↗</a></div><iframe src="'+file+'" title="'+title+' case study" loading="lazy"></iframe></div>';
 WORK.forEach(w=>{if(w.file&&!CASES[w.key])CASES[w.key]=csFrame(w.file,w.name)});
 /* Auto-show 'Read the case study' when the card's file has been uploaded */
@@ -1887,7 +1887,7 @@ boot();requestAnimationFrame(render);
   'Design system':["He built a whole design system in Figma. Every screen speaks the same language."],
   'FL Design System':["His design system is published on Figma Community. Go have a look!"],
   'Bank statement upload':["He reworked the step where loan applications used to stall."],
-  'CloudNBFC lender portal':["Rebuilt end to end on the design system. So clean."],
+  'CloudNBFC lender portal':["A work in progress. Can't wait to see this one!"],
   'Loan Against Property':["Wireframe to clickable prototype in 5 days. Read this one!"],
   'FlexiGro website redesign':["One week, one whole website. Go see it live!"],
   'Wins':["Look at all these wins. I helped by napping."],

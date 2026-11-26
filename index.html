@@ -1031,7 +1031,7 @@ const workFrame=(w,i)=>{
    <div class="f-pad" style="background:${w.bg}"><div class="wgrid">
     <div class="txt"><div class="idx rv"><span style="display:flex;gap:10px;align-items:center"><b>0${i+1}</b>${w.kind||"Case study"}</span><a class="back" href="#" data-go="work">↑ All work</a></div>
      <div><h2 class="rv">${w.t}</h2><p class="rv">${w.d}</p>
-      <div class="facts rv">${w.f.map(x=>`<div><small>${x[0]}</small>${x[1]}</div>`).join('')}</div>${(w.cs||w.file)?`<a class="btnf cs-btn rv" href="#${w.key}-case-study" data-cs="${w.key}"${w.cs?'':' hidden data-auto="'+w.file+'"'} style="background:#111114;color:#fff">Read the case study →</a>`:''}${w.site?`<a class="btnf rv" href="${w.site}" target="_blank" rel="noopener" style="background:#111114;color:#fff">View the website ↗</a>`:''}</div></div>
+      <div class="facts rv">${w.f.map(x=>`<div><small>${x[0]}</small>${x[1]}</div>`).join('')}</div>${(w.cs||w.file)?`<a class="btnf cs-btn rv" href="#${w.key}-case-study" data-cs="${w.key}"${w.cs?'':' hidden data-auto="'+w.file+'"'} style="background:#111114;color:#fff">Read the case study →</a>`:''}${w.site?`<a class="btnf rv" href="${w.site}" target="_blank" rel="noopener" style="background:#111114;color:#fff;margin-top:18px">View the website ↗</a>`:''}</div></div>
     ${dev}
    </div></div>`,
    {type:(w.kind||"Case study")+" "+(i+1),kv:w.f,fills:[w.bg,w.acc[0],w.acc[1]],note:w.note});

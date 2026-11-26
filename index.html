@@ -368,8 +368,20 @@ img{display:block;max-width:100%}
 .f-index h2{margin:0;font-size:64px;letter-spacing:-.05em;line-height:.95;font-weight:800}
 .f-index h2 .serif{color:#111114;font-weight:400}
 .ix-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;margin-top:30px}
-.ix-col h3{margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;display:flex;justify-content:space-between}
+.ix-list h3,.ix-col h3{margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;display:flex;justify-content:space-between}
 .ix-row{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:14px;width:100%;padding:12px 4px;border-top:1.5px solid color-mix(in srgb,currentColor 38%,transparent);background:transparent;color:inherit;text-align:left;cursor:pointer;text-decoration:none;transition:padding .3s var(--ease),background .3s}
+.ix-row{grid-template-columns:40px 1fr auto}
+.ix-row small{display:flex!important;align-items:center;gap:10px;flex-wrap:wrap;margin-top:3px}
+.ix-row .dv{width:1px;height:12px;background:currentColor;opacity:.5}
+.ix-row .kind{font:500 11px/1 var(--mono);font-style:normal;letter-spacing:.08em;text-transform:uppercase}
+.ix-row .end{display:flex;gap:10px;align-items:center}
+.ix-row .st{font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;background:#14AE5C;color:#fff;white-space:nowrap}
+.ix-row .st.up{background:#111114}
+.ix-row.up{cursor:default}.ix-row.up b,.ix-row.up strong,.ix-row.up small{opacity:.6}
+.ix-row.up::before{display:none}
+@media (hover:hover){.ix-row.up:hover strong{transform:none}.ix-list:hover .ix-row strong{opacity:.45}.ix-list:hover .ix-row:hover strong{opacity:1}.ix-list:hover .ix-row.up strong{opacity:.6}}
+.ix-list{margin-top:30px}
+.m .ix-row .dv{display:none}.m .ix-row small{flex-direction:column;align-items:flex-start;gap:4px}
 .ix-row:last-child{border-bottom:1.5px solid color-mix(in srgb,currentColor 38%,transparent)}
 .ix-row b{font-family:var(--mono);font-size:13px;opacity:.85}
 .ix-row strong{display:block;font-size:22px;letter-spacing:-.03em;font-weight:700;line-height:1.15}
@@ -891,21 +903,15 @@ const CAREER_START = "2024-12-17";         // first day at FlexiLoans (internshi
      SCF website card     -> scf-website-case-study.html
    Optional cover image on the card's mockup: add cover:"path/to/image.jpg". */
 const WORK = [
-  {key:"ds-lib", file:"design-system-case-study.html", name:"FL Design System", t:'One system, <span class="serif">every</span> screen', bg:"#E9F2FF", dev:"browser", acc:["#0D99FF","#111114"],
-   d:"Consolidated FlexiLoans’ Figma component library into a React, TypeScript and Tailwind library that engineers ship from directly.",
-   f:[["Role","Owner"],["Scope","36 components"],["Stack","Figma, React"]], note:"Every component maps one-to-one from Figma to code, so design and dev never drift."},
-  {key:"bank", file:"bank-statement-case-study.html", name:"Bank statement upload", t:'Statements, <span class="serif">minus</span> the stress', bg:"#E3F6EA", dev:"phone", acc:["#14AE5C","#111114"],
-   d:"Reworked how borrowers share bank statements during a loan application, the step where many applications stall.",
-   f:[["Role","Lead designer"],["Platform","Mobile"],["Focus","Drop-offs"]], note:"The biggest win came from mapping every failure path, not the happy path."},
-  {key:"cloud", name:"CloudNBFC lender portal",  file:"cloudnbfc-case-study.html", t:'A portal lenders <span class="serif">enjoy</span>', bg:"#FFF1EB", dev:"browser", acc:["#F2A890","#111114"],
-   d:"Redesigning the supply chain finance portal lenders use to review and manage financing, on the design system.",
-   f:[["Role","Product designer"],["Platform","Web app"],["Status","In progress"]], note:"Work in progress. Screens coming soon."},
-  {key:"lap", name:"Loan Against Property", t:'Property loans, <span class="serif">credit-ready</span>', bg:"#FFF6C7", dev:"browser", acc:["#9747FF","#111114"], cs:true,
+  {key:"lap", name:"Loan Against Property", t:'Property loans, <span class="serif">credit-ready</span>', bg:"#FFF6C7", dev:"browser", acc:["#9747FF","#111114"], cs:true, kind:"Case study", status:"Live", sub:"Sole designer · Live in about 10 days",
    d:"Turned a PM’s functional wireframe into four credit screens for FlexiLoans’ new Loan Against Property product: collateral, balance transfer, 12 months of banking and eligibility.",
    f:[["Role","UI/UX designer"],["Timeline","5 days"],["Platform","Internal LOS"]], note:"The wireframe had the right rules. The work was making every choice that changes the loan amount a deliberate one."},
-  {key:"scf", file:"scf-website-case-study.html", name:"FlexiGro website redesign", t:'A landing site in <span class="serif">one week</span>', bg:"#F1F1F3", dev:"browser", acc:["#FF3D8B","#111114"],
+  {key:"scf", name:"FlexiGro website redesign", t:'A landing site in <span class="serif">one week</span>', bg:"#F1F1F3", dev:"browser", kind:"Project", status:"Launched", sub:"Landing page and 3 sub-pages", acc:["#FF3D8B","#111114"],
    d:"Redesigned the FlexiGro website as a landing page and 3 sub-pages, built from the SCF team’s content for anchors, vendors and dealers. Designed in one week and taken live.",
    f:[["Role","UI/UX designer"],["Timeline","1 week"],["Status","Launched"]], note:"Chosen by my design lead for the task, and I took it live with the DevOps and dev teams."},
+  {key:"cloud", name:"CloudNBFC lender portal",  t:'A portal lenders <span class="serif">enjoy</span>', bg:"#FFF1EB", dev:"browser", kind:"Case study", status:"Upcoming", up:true, sub:"Web app redesign", acc:["#F2A890","#111114"],
+   d:"Redesigning the supply chain finance portal lenders use to review and manage financing, on the design system.",
+   f:[["Role","Product designer"],["Platform","Web app"],["Status","In progress"]], note:"Work in progress. Screens coming soon."},
 ];
 const WINS = [
   {em:"🧩", t:"Built the FL design system", s:"50+ components in Figma and Claude Design", c:"#FFE873", r:-4},
@@ -913,6 +919,14 @@ const WINS = [
   {em:"🏦", t:"Shipped LAP in about 10 days", s:"Sole designer, 5 days of design", c:"#B9F0CF", r:-2},
   {em:"📈", t:"Pitched app engagement to leadership", s:"Post-disbursement retention", c:"#C9E6FF", r:4},
   {em:"🏆", t:"Your next award goes here", s:"Edit WINS in the code", c:"#E2D3FF", r:-3},
+];
+/* One list on the "All work" frame. go = frame to open, url = external link (e.g. Figma), up = upcoming (not clickable). */
+const FIGMA_DS = "";  /* paste the FL design system Figma link here */
+const LIST = () => [
+  ...WORK.filter(w=>!w.up).map(w=>({name:w.name,sub:w.sub,kind:w.kind,status:w.status,go:w.key})),
+  {name:"FL design system",sub:"50+ components · Figma Community",kind:"Project",status:"Live",go:FIGMA_DS?"":"system",url:FIGMA_DS},
+  ...WORK.filter(w=>w.up).map(w=>({name:w.name,sub:w.sub,kind:w.kind,status:w.status,up:true})),
+  {name:"Partner portal",sub:"Web app redesign",kind:"Case study",status:"Upcoming",up:true},
 ];
 /* Projects: quick-look work that isn't a full case study. Add a link to open Dribbble, Behance or a live site. */
 const PROJECTS = [
@@ -990,7 +1004,7 @@ addFrame('experience','Experience','f-exp',`
     <div class="tl-when">Jul 2025 — Present</div>
     <div class="tl-body"><h3>UI/UX Designer</h3><span class="tl-co">FlexiLoans · Full time</span>
      <p>Design web and mobile products end to end, from flows and wireframes to high-fidelity UI and developer handoff. Built and maintain the company’s design system: Figma variables, tokens and a React component library.</p>
-     <div class="tl-work">${WORK.map(w=>`<a href="#" data-go="${w.key}">${w.name}</a>`).join('')}</div></div></div>
+     <div class="tl-work">${WORK.filter(w=>!w.up).map(w=>`<a href="#" data-go="${w.key}">${w.name}</a>`).join('')}</div></div></div>
    <div class="tl-item"><span class="tl-dot"></span>
     <div class="tl-when">Dec 2024 — Jun 2025</div>
     <div class="tl-body"><h3>UI/UX Intern</h3><span class="tl-co">FlexiLoans · Internship</span>
@@ -1001,18 +1015,28 @@ addFrame('experience','Experience','f-exp',`
 
 addFrame('work','All work','f-index',`
  <div class="f-pad">
-  <div class="ix-head rv"><h2>Everything I’ve <span class="serif">made.</span></h2><p>Case studies go deep. Projects are quick looks. Tap any one to open it.</p></div>
-  <div class="ix-grid rv">
-   <div class="ix-col"><h3><span>Case studies</span><span>${WORK.length}</span></h3>
-    ${WORK.map((w,i)=>`<a class="ix-row" href="#" data-go="${w.key}"><b>0${i+1}</b><span><strong>${w.name}</strong><small>${w.f.map(x=>x[1]).slice(0,2).join(', ')}</small></span><span class="arr" aria-hidden="true">→</span></a>`).join('')}
-   </div>
-   <div class="ix-col"><h3><span>Projects</span><span>${PROJECTS.filter(p=>!p.add).length}</span></h3>
-    <div class="ix-projects">${PROJECTS.map((p,i)=>`<button class="pj${p.add?' add':''}" data-proj="${i}"><span class="tag" style="background:${p.c}">${p.tag}</span><strong>${p.t}</strong></button>`).join('')}</div>
-   </div>
+  <div class="ix-head rv"><h2>Everything I’ve <span class="serif">made.</span></h2></div>
+  <div class="ix-list rv"><h3><span>Projects and case studies</span><span>${LIST().length}</span></h3>
+   ${LIST().map((w,i)=>{const inner=`<b>0${i+1}</b><span><strong>${w.name}</strong><small>${w.sub}<i class="dv"></i><em class="kind">${w.kind}</em></small></span><span class="end"><span class="st${w.up?' up':''}">${w.status}</span>${w.up?'':`<span class="arr" aria-hidden="true">${w.url?'↗':'→'}</span>`}</span>`;
+     return w.up?`<div class="ix-row up" aria-disabled="true">${inner}</div>`:w.url?`<a class="ix-row" href="${w.url}" target="_blank" rel="noopener">${inner}</a>`:`<a class="ix-row" href="#" data-go="${w.go}">${inner}</a>`}).join('')}
   </div>
  </div>`,
- {type:"Work index",kv:[["Case studies",WORK.length+""],["Projects",PROJECTS.filter(p=>!p.add).length+""]],fills:["#0D99FF","#FFFFFF","#111114"]});
+ {type:"Work index",kv:[["Live",LIST().filter(w=>!w.up).length+""],["Upcoming",LIST().filter(w=>w.up).length+""]],fills:["#0D99FF","#FFFFFF","#111114"]});
 
+const workFrame=(w,i)=>{
+  const dev = w.dev==='phone'
+    ? `<div class="device phone rv" data-slot="cv-${w.key}" role="button" tabindex="0" aria-label="Add a screen for ${w.name}"><div class="scr">${fakeUI(w)}</div><span class="upl">Add screen</span></div>`
+    : `<div class="device browser rv" data-slot="cv-${w.key}" role="button" tabindex="0" aria-label="Add a screen for ${w.name}" style="position:relative"><div class="bar"><i></i><i></i><i></i></div><div class="scr">${fakeUI(w)}</div><span class="upl">Add screen</span></div>`;
+  addFrame(w.key,w.name,'f-work',`
+   <div class="f-pad" style="background:${w.bg}"><div class="wgrid">
+    <div class="txt"><div class="idx rv"><span style="display:flex;gap:10px;align-items:center"><b>0${i+1}</b>${w.kind||"Case study"}</span><a class="back" href="#" data-go="work">↑ All work</a></div>
+     <div><h2 class="rv">${w.t}</h2><p class="rv">${w.d}</p>
+      <div class="facts rv">${w.f.map(x=>`<div><small>${x[0]}</small>${x[1]}</div>`).join('')}</div>${(w.cs||w.file)?`<a class="btnf cs-btn rv" href="#${w.key}-case-study" data-cs="${w.key}"${w.cs?'':' hidden data-auto="'+w.file+'"'} style="background:#111114;color:#fff">Read the case study →</a>`:''}</div></div>
+    ${dev}
+   </div></div>`,
+   {type:(w.kind||"Case study")+" "+(i+1),kv:w.f,fills:[w.bg,w.acc[0],w.acc[1]],note:w.note});
+};
+WORK.filter(w=>!w.up).forEach(workFrame);
 addFrame('system','Design system','f-ds',`
  <div class="f-pad"><div class="ds2">
   <div class="ds-l">
@@ -1046,19 +1070,7 @@ addFrame('system','Design system','f-ds',`
  </div></div>`,
  {type:"Design system",kv:[["Source","FL-Design System"],["Role","Owner, maintainer"],["Collections","FL-Primitives, FL-Semantic"],["Output","React + TS + Tailwind"]],fills:["#111114","#7CC7FF","#FFFFFF"]});
 
-WORK.forEach((w,i)=>{
-  const dev = w.dev==='phone'
-    ? `<div class="device phone rv" data-slot="cv-${w.key}" role="button" tabindex="0" aria-label="Add a screen for ${w.name}"><div class="scr">${fakeUI(w)}</div><span class="upl">Add screen</span></div>`
-    : `<div class="device browser rv" data-slot="cv-${w.key}" role="button" tabindex="0" aria-label="Add a screen for ${w.name}" style="position:relative"><div class="bar"><i></i><i></i><i></i></div><div class="scr">${fakeUI(w)}</div><span class="upl">Add screen</span></div>`;
-  addFrame(w.key,w.name,'f-work',`
-   <div class="f-pad" style="background:${w.bg}"><div class="wgrid">
-    <div class="txt"><div class="idx rv"><span style="display:flex;gap:10px;align-items:center"><b>0${i+1}</b>Case study</span><a class="back" href="#" data-go="work">↑ All work</a></div>
-     <div><h2 class="rv">${w.t}</h2><p class="rv">${w.d}</p>
-      <div class="facts rv">${w.f.map(x=>`<div><small>${x[0]}</small>${x[1]}</div>`).join('')}</div>${(w.cs||w.file)?`<a class="btnf cs-btn rv" href="#${w.key}-case-study" data-cs="${w.key}"${w.cs?'':' hidden data-auto="'+w.file+'"'} style="background:#111114;color:#fff">Read the case study →</a>`:''}</div></div>
-    ${dev}
-   </div></div>`,
-   {type:"Case study "+(i+1),kv:w.f,fills:[w.bg,w.acc[0],w.acc[1]],note:w.note});
-});
+WORK.filter(w=>w.up).forEach(w=>workFrame(w,LIST().findIndex(x=>x.name===w.name)));
 
 addFrame('wins','Wins','f-wins',`
  <div class="board" id="board"></div>
@@ -1469,7 +1481,7 @@ const hcur=$('#hcur'),hcurT=$('#hcurT'),hpv=$('#hpv');
 if(fine&&!reduce){let mx=-100,my=-100,cx=mx,cy=my,px=mx,py=my,pvKey=null;
   addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});
   document.addEventListener('pointerover',e=>{if(dev){hcur.classList.remove('big');hpv.classList.remove('on');return}
-    const t=e.target.closest('.f-index .ix-row,.f-index .pj:not(.add)');
+    const t=e.target.closest('.f-index .ix-row:not(.up)');
     if(t){hcurT.textContent='Open';hcur.classList.add('big')}else hcur.classList.remove('big');
     const row=e.target.closest('.ix-row[data-go]');const w=row&&WORK.find(x=>x.key===row.dataset.go);
     if(w){if(pvKey!==w.key){pvKey=w.key;hpv.style.background=w.bg;hpv.innerHTML=`<div class="browser" style="position:absolute"><div class="bar"><i></i><i></i><i></i></div><div class="scr">${fakeUI(w)}</div></div>`}hpv.classList.add('on')}else hpv.classList.remove('on')});

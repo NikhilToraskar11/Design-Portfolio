@@ -922,9 +922,11 @@ const WINS = [
 ];
 /* One list on the "All work" frame. go = frame to open, url = external link (e.g. Figma), up = upcoming (not clickable). */
 const FIGMA_DS = "";  /* paste the FL design system Figma link here */
+const NST_DS = "https://www.figma.com/community/file/1707879971491451129";  /* my own NST Design System on Figma Community */
 const LIST = () => [
   ...WORK.filter(w=>!w.up).map(w=>({name:w.name,sub:w.sub,kind:w.kind,status:w.status,go:w.key})),
-  {name:"FL design system",sub:"50+ components · Figma Community",kind:"Project",status:"Live",go:FIGMA_DS?"":"system",url:FIGMA_DS},
+  {name:"FL design system",sub:"50+ components · Built at FlexiLoans",kind:"Project",status:"Live",go:FIGMA_DS?"":"system",url:FIGMA_DS},
+  {name:"NST Design System",sub:"35+ components · 1,000+ variables · Figma Community",kind:"Project",status:"Live",url:NST_DS},
   ...WORK.filter(w=>w.up).map(w=>({name:w.name,sub:w.sub,kind:w.kind,status:w.status,up:true})),
   {name:"Partner portal",sub:"Web app redesign",kind:"Case study",status:"Upcoming",up:true},
 ];
@@ -933,6 +935,7 @@ const PROJECTS = [
   {t:"PAN fallback redesign", tag:"Proposal", c:"#FFE873", d:"A self-initiated redesign of what happens when PAN verification fails during onboarding, so applicants always have a clear way forward.", link:""},
   {t:"App engagement pitch", tag:"Strategy", c:"#B9F0CF", d:"A pitch to leadership on keeping borrowers engaged with the app after their loan is disbursed.", link:""},
   {t:"This portfolio", tag:"Side project", c:"#FFC2DA", d:"A portfolio built like a living design file: live design tokens that restyle every layer, real FL-Design System components, and a dev mode that inspects real CSS.", link:""},
+  {t:"NST Design System", tag:"Figma Community", c:"#DCEBFF", d:"My own token-based design system for fintech products: 35+ Material 3 based components and 1,000+ Figma variables in a primitive and semantic layer, with a trust-blue palette, status colours and accessible button contrast. Free to duplicate on Figma Community.", link:NST_DS},
   {t:"Add a project", tag:"Empty slot", c:"rgba(255,255,255,.22)", add:true, d:"Add more projects by editing the PROJECTS list at the top of the script. Each one can link to Dribbble, Behance or a live site.", link:""},
 ];
 /* ======================================================= */
@@ -1050,6 +1053,7 @@ addFrame('system','Design system','f-ds',`
     <div><strong>2</strong><span>themes, light and dark</span></div>
    </div>
    <div class="ds-flow rv" aria-label="How a token flows"><span><i>01</i>Primitives</span><b></b><span><i>02</i>Semantic</span><b></b><span><i>03</i>Components</span></div>
+   <a class="btnf rv" href="${NST_DS}" target="_blank" rel="noopener" style="background:#111114;color:#fff;align-self:flex-start;margin-top:22px">See my NST Design System on Figma ↗</a>
   </div>
   <div class="ds-board rv">
    <div class="ds-bar"><span class="ds-hint">Pick a component <b aria-hidden="true">→</b></span>
@@ -1898,6 +1902,7 @@ boot();requestAnimationFrame(render);
   'All work':["Every project here is real work. Go on, pick one!"],
   'Design system':["He built a whole design system in Figma. Every screen speaks the same language."],
   'FL Design System':["His design system is published on Figma Community. Go have a look!"],
+   'NST Design System':["His own fintech design system, free on Figma Community. Go duplicate it!"],
   'Bank statement upload':["He reworked the step where loan applications used to stall."],
   'CloudNBFC lender portal':["A work in progress. Can't wait to see this one!"],
   'Loan Against Property':["Wireframe to clickable prototype in 5 days. Read this one!"],

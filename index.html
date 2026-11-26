@@ -185,6 +185,14 @@ html.cs-on{overflow:hidden}
 .ovtop:hover{transform:translateY(-1px)}.ovtop:active{transform:scale(.97)}
 .present .ovbar{display:none}
 html,body{touch-action:pan-x pan-y}
+.free,.free body{touch-action:none;overscroll-behavior:none}
+.free .hint{opacity:0!important;pointer-events:none}
+.totop{position:fixed;left:calc(var(--lw,0px) + 20px);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:45;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px 0 12px;border:1px solid var(--chrome-line,#E3E3E3);border-radius:999px;background:var(--chrome,#fff);color:var(--chrome-text,#111114);font:600 13px/1 Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(17,17,20,.12);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .4s cubic-bezier(.2,.8,.2,1),background .2s}
+.totop b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--chrome-text,#111114);color:var(--chrome,#fff);font-size:12px}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--chrome-2,#F4F4F6)}
+@media (min-width:1100px){.totop{--lw:230px}}
+.present .totop{display:none}
 @media (max-width:760px){.ovbar{bottom:calc(100px + env(safe-area-inset-bottom,0px));padding:5px 5px 5px 14px;gap:10px}.ovtip{font-size:13px}.ovl{display:none}.ovs{display:inline}.ovtop{height:38px;padding:0 14px;font-size:13px}}
 @media (prefers-reduced-motion:reduce){.ovbar{transition:none}}
 </style>
@@ -457,6 +465,8 @@ img{display:block;max-width:100%}
 .avs{display:flex;margin-right:6px}
 .avs span{width:28px;height:28px;border-radius:50%;border:2px solid var(--chrome);margin-left:-8px;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff}
 .zoom{font-size:12px;font-weight:600;color:var(--chrome-muted);min-width:44px;text-align:right;font-variant-numeric:tabular-nums}
+a.share{display:inline-flex;align-items:center;text-decoration:none}
+a.share[hidden]{display:none}
 .share{height:34px;padding:0 14px;border-radius:8px;border:0;background:var(--sel);color:#fff;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap}
 @media (hover:hover){.share:hover{background:#0B85E0}}
 
@@ -798,6 +808,7 @@ img{display:block;max-width:100%}
   <div class="tgroup">
     <button class="share alt hide-s" data-tk-open aria-haspopup="dialog">Tokens</button>
     <span class="zoom hide-s" id="zoom">100%</span>
+    <a class="share alt hide-s" id="resumeBtn" hidden download="Nikhil_Toraskar_Resume.pdf">Resume ↓</a>
     <button class="share alt" id="workBtn">All work</button>
     <button class="share" id="hireBtn">Hire me</button>
   </div>
@@ -862,7 +873,14 @@ const EMAIL = "toraskarnikhil.111@gmail.com";
 const PHONE = "+91 88507 36354";           // shown on the Say hello frame
 const PHONE_LINK = "+918850736354";        // used for the tap-to-call link
 /* Add these when ready: paste the full URL between the quotes and the button appears automatically. */
-const LINKS = { linkedin:"", behance:"", resume:"" };
+const LINKS = { linkedin:"", behance:"", resume:"Nikhil_Toraskar_Resume.pdf" };
+if(LINKS.resume){const rb=document.getElementById('resumeBtn');if(rb){rb.href=LINKS.resume;rb.hidden=false}}
+/* Resume download: inside claude.ai the viewer saves files through the downloads capability; elsewhere the plain link works */
+(async()=>{if(!LINKS.resume||!window.claude||!claude.use)return;let dl=null;try{dl=await claude.use('downloads')}catch(e){}
+ let blob=null;const getBlob=async()=>blob||(blob=await (await fetch(LINKS.resume)).blob());getBlob().catch(()=>{});
+ document.addEventListener('click',async e=>{const a=e.target.closest('a[download]');if(!a||a.getAttribute('href')!==LINKS.resume)return;e.preventDefault();
+  if(!dl){window.open(LINKS.resume,'_blank','noopener');return}
+  try{await dl.save({filename:'Nikhil_Toraskar_Resume.pdf',data:await getBlob()})}catch(err){if(err&&err.code!=='declined'&&err.code!=='rate_limited')window.open(LINKS.resume,'_blank','noopener')}},true)})();
 const CAREER_START = "2024-12-17";         // first day at FlexiLoans (internship)
 /* WORK = the case-study cards on the home page.
    EASY WAY: upload a page with the card's file name (see each card's file:"...") and the
@@ -884,10 +902,10 @@ const WORK = [
    f:[["Role","Product designer"],["Platform","Web app"],["Users","Lenders"]], note:"Rebuilt entirely with design system components, no one-off styles."},
   {key:"lap", name:"Loan Against Property", t:'Property loans, <span class="serif">credit-ready</span>', bg:"#FFF6C7", dev:"browser", acc:["#9747FF","#111114"], cs:true,
    d:"Turned a PM’s functional wireframe into four credit screens for FlexiLoans’ new Loan Against Property product: collateral, balance transfer, 12 months of banking and eligibility.",
-   f:[["Role","UI/UX designer"],["Timeline","1 week"],["Platform","Internal LOS"]], note:"The wireframe had the right rules. The work was making every choice that changes the loan amount a deliberate one."},
-  {key:"scf", file:"scf-website-case-study.html", name:"SCF marketing website", t:'B2B finance in <span class="serif">plain</span> words', bg:"#F1F1F3", dev:"browser", acc:["#FF3D8B","#111114"],
-   d:"Designed the supply chain finance site on flexigro.com, explaining a B2B financing product to anchors and distributors in plain language.",
-   f:[["Role","Designer"],["Platform","Responsive web"],["Audience","Businesses"]], note:"Rewrote the story around the distributor’s problem, not the product’s features."},
+   f:[["Role","UI/UX designer"],["Timeline","5 days"],["Platform","Internal LOS"]], note:"The wireframe had the right rules. The work was making every choice that changes the loan amount a deliberate one."},
+  {key:"scf", file:"scf-website-case-study.html", name:"FlexiGro website redesign", t:'A landing site in <span class="serif">one week</span>', bg:"#F1F1F3", dev:"browser", acc:["#FF3D8B","#111114"],
+   d:"Redesigned the FlexiGro website as a landing page and 3 sub-pages, built from the SCF team’s content for anchors, vendors and dealers. Designed in one week and taken live.",
+   f:[["Role","UI/UX designer"],["Timeline","1 week"],["Status","Launched"]], note:"Chosen by my design lead for the task, and I took it live with the DevOps and dev teams."},
 ];
 const WINS = [
   {em:"🧩", t:"Built the FL component library", s:"36 components, Figma to React", c:"#FFE873", r:-4},
@@ -917,6 +935,7 @@ addEventListener('DOMContentLoaded',()=>setTimeout(function(){if(reduce)return;c
   rows.forEach(r=>{const half=r.tr.scrollWidth/2;if(!half)return;const v=r.hold?0:(34+boost);r.x+=r.d*v*dt;if(r.x<=-half)r.x+=half;if(r.x>0)r.x-=half;r.tr.style.transform=`translate3d(${r.x}px,0,0)`});
   requestAnimationFrame(tick)})(lt)},0));
 const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const TOUCH=matchMedia('(pointer:coarse)').matches||('ontouchstart' in window&&!fine);
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2200)};
 const root=document.documentElement, world=$('#world');
@@ -1065,7 +1084,7 @@ addFrame('contact','Say hello','f-contact',`
    <a class="btnf ghost" href="tel:${PHONE_LINK}">Call me</a>
    ${LINKS.linkedin?`<a class="btnf ghost" href="${LINKS.linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a>`:''}
    ${LINKS.behance?`<a class="btnf ghost" href="${LINKS.behance}" target="_blank" rel="noopener">Behance ↗</a>`:''}
-   ${LINKS.resume?`<a class="btnf ghost" href="${LINKS.resume}" target="_blank" rel="noopener">Resume ↗</a>`:''}</div>
+   ${LINKS.resume?`<a class="btnf ghost" href="${LINKS.resume}" download="Nikhil_Toraskar_Resume.pdf">Download resume ↓</a>`:''}</div>
  </div>`,
  {type:"Contact",kv:[["Email",EMAIL],["Phone",PHONE],["Location","Mumbai, India"]],fills:["#F2A890","#111114","#FFFFFF"]});
 
@@ -1154,7 +1173,10 @@ const fit=(r,a,pad)=>{const s=Math.min((a.w-pad*2)/r.w,(a.h-pad*2)/r.h);return {
 
 /* ---------- Camera ---------- */
 let cam={cx:0,cy:0,s:1}, active=0, lastActive=-1;
+let free=null;
+const freeAct=c=>{const ov=fit(W,c.a||area(),innerWidth<760?12:36);if(c.s<=ov.s*1.08)return STOPS.length-1;let best=0,bd=Infinity;FRAMES.forEach((f,i)=>{const dx=Math.max(f.x-c.cx,0,c.cx-(f.x+f.w)),dy=Math.max(f.y-c.cy,0,c.cy-(f.y+f.h));const d=dx*dx+dy*dy;if(d<bd){bd=d;best=i}});return best};
 const camFor=()=>{
+  if(free&&!flight){const a=area();return {cx:free.cx,cy:free.cy,s:free.s,act:freeAct({...free,a}),a}}
   if(flight){const a=area(),pad=innerWidth<760?12:36;const k=clamp((performance.now()-flight.t0)/flight.dur,0,1);const t=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
     const A=flight.from,B=fit(rectOf(STOPS[flight.i]),a,pad),ov=fit(W,a,pad);
     let s=Math.exp(lerp(Math.log(A.s),Math.log(B.s),t));const outS=Math.max(ov.s,Math.min(A.s,B.s)*.3);s=Math.exp(lerp(Math.log(s),Math.log(outS),Math.sin(Math.PI*t)*.8));
@@ -1177,7 +1199,7 @@ const render=()=>{
   const ds=24*c.s;dots.style.backgroundSize=`${ds}px ${ds}px`;dots.style.backgroundPosition=`${tx}px ${ty}px`;
   $('#haze1').style.transform=`translate(${tx*.08}px,${ty*.08}px)`;$('#haze2').style.transform=`translate(${-tx*.05}px,${ty*.06}px)`;
   zoomEl.textContent=Math.round(c.s*100)+'%';
-  FRAMES.forEach(f=>{f.nameEl.style.transform=`scale(${1/c.s})`;f.nameEl.style.top=(f.y-6-22/c.s)+'px'});
+  FRAMES.forEach(f=>{f.nameEl.style.transform=`scale(${1/c.s})`;f.nameEl.style.top=(f.y-6-22/c.s)+'px';f.nameEl.style.visibility=f.w*c.s<(innerWidth<760?110:150)?'hidden':''});
   // selection
   const id=STOPS[c.act];
   if(id!=='overview'){const r=rectOf(id);sel.style.opacity=1;sel.style.transform=`translate(${tx+r.x*c.s-1}px,${ty+r.y*c.s-1}px)`;sel.style.width=(r.w*c.s+2)+'px';sel.style.height=(r.h*c.s+2)+'px';{const fr0=FRAMES.find(x=>x.id===id);const fd=fr0&&fr0.el.dataset.fid;dim.textContent=`${Math.round(r.w)} × ${Math.round(r.h)}${fd?' · '+(fd==='wire'?'Wireframe':'Sketch'):''}`}}
@@ -1194,6 +1216,7 @@ STOPS.forEach((id,i)=>{const li=document.createElement('li');const b=document.cr
   b.onclick=()=>go(i);li.appendChild(b);layersEl.appendChild(li)});
 let flight=null;
 const go=i=>{i=clamp(i,0,STOPS.length-1);
+  if(free){free=null;root.classList.remove('free');flight={from:{cx:cam.cx,cy:cam.cy,s:cam.s},fromI:active,i,t0:performance.now(),dur:reduce?1:950};scrollTo({top:i*SEG()+SEG()*.01,behavior:'auto'});return}
   if(reduce||Math.abs(i-active)<=1){scrollTo({top:i*SEG()+SEG()*.01,behavior:reduce?'auto':'smooth'});return}
   const dist=Math.abs(i-active);
   flight={from:{cx:cam.cx,cy:cam.cy,s:cam.s},fromI:active,i,t0:performance.now(),dur:Math.min(1900,1150+dist*70)};
@@ -1234,25 +1257,45 @@ $('#workBtn').onclick=()=>go(STOPS.indexOf('work'));
    if(acc>36){acc=0;zoom(1,e.clientX,e.clientY)}else if(acc<-36){acc=0;zoom(-1,e.clientX,e.clientY)}},{passive:false});
  /* Safari trackpad pinch */
  let gx=innerWidth/2,gy=innerHeight/2;
- addEventListener('gesturestart',e=>{if(busy())return;e.preventDefault();gx=e.clientX||gx;gy=e.clientY||gy},{passive:false});
- addEventListener('gesturechange',e=>{if(busy())return;e.preventDefault();if(e.scale>1.18)zoom(1,gx,gy);else if(e.scale<.85)zoom(-1,gx,gy)},{passive:false});
+ addEventListener('gesturestart',e=>{if(busy())return;e.preventDefault();if(TOUCH)return;gx=e.clientX||gx;gy=e.clientY||gy},{passive:false});
+ addEventListener('gesturechange',e=>{if(busy())return;e.preventDefault();if(TOUCH)return;if(e.scale>1.18)zoom(1,gx,gy);else if(e.scale<.85)zoom(-1,gx,gy)},{passive:false});
  addEventListener('gestureend',e=>{if(!busy())e.preventDefault()},{passive:false});
- /* two-finger pinch on phones and tablets */
- let t0=null;
- const two=t=>({d:Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY),x:(t[0].clientX+t[1].clientX)/2,y:(t[0].clientY+t[1].clientY)/2});
- addEventListener('touchstart',e=>{t0=(e.touches.length===2&&!busy())?two(e.touches):null},{passive:true});
- addEventListener('touchmove',e=>{if(e.touches.length!==2||!t0||busy())return;e.preventDefault();const t=two(e.touches),r=t.d/t0.d;
-   if(r>1.2){zoom(1,t0.x,t0.y);t0=null}else if(r<.83){zoom(-1,t0.x,t0.y);t0=null}},{passive:false});
- addEventListener('touchend',e=>{if(e.touches.length<2)t0=null},{passive:true});
+ /* phones and tablets: Figma-style free roam. Pinch to zoom, drag to move, tap a page to open.
+    Zoom out stops at the whole-canvas view; moving stops at the edge of the pages. */
+ const PAD=()=>innerWidth<760?12:36;
+ const bounds=f=>{const a=area(),ov=fit(W,a,PAD());f.s=clamp(f.s,ov.s,Math.max(1.6,ov.s*8));
+   const m=40,hw=a.w/2/f.s,hh=a.h/2/f.s;
+   f.cx=W.w+2*m<=2*hw?W.x+W.w/2:clamp(f.cx,W.x-m+hw,W.x+W.w+m-hw);
+   f.cy=W.h+2*m<=2*hh?W.y+W.h/2:clamp(f.cy,W.y-m+hh,W.y+W.h+m-hh);return f};
+ const enter=()=>{if(!free){flight=null;free={cx:cam.cx,cy:cam.cy,s:cam.s};root.classList.add('free')}};
+ let pin=null,pan=null,vel=null,moved=false;
+ const mid=t=>({x:(t[0].clientX+t[1].clientX)/2,y:(t[0].clientY+t[1].clientY)/2,d:Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)});
+ const scr=(x,y)=>{const a=area();return {x:x-(a.x+a.w/2),y:y-(a.y+a.h/2)}};
+ const startPin=t=>{const m=mid(t),o=scr(m.x,m.y);pin={d:m.d,s:free.s,wx:free.cx+o.x/free.s,wy:free.cy+o.y/free.s};pan=null};
+ const startPan=t=>{pan={x:t.clientX,y:t.clientY,t:performance.now()};vel={x:0,y:0}};
+ if(TOUCH){
+  addEventListener('touchstart',e=>{if(busy()||root.classList.contains('present'))return;moved=false;vel=null;
+    if(e.touches.length===2){enter();startPin(e.touches)}else if(e.touches.length===1&&free)startPan(e.touches[0])},{passive:true});
+  addEventListener('touchmove',e=>{if(!free||busy())return;e.preventDefault();moved=true;
+    if(e.touches.length===2&&pin){const m=mid(e.touches),o=scr(m.x,m.y);const s=pin.s*m.d/pin.d;free.s=s;bounds(free);free.cx=pin.wx-o.x/free.s;free.cy=pin.wy-o.y/free.s;bounds(free)}
+    else if(e.touches.length===1&&pan){const t=e.touches[0],now=performance.now(),dt=Math.max(1,now-pan.t),dx=t.clientX-pan.x,dy=t.clientY-pan.y;
+      free.cx-=dx/free.s;free.cy-=dy/free.s;bounds(free);vel={x:dx/dt,y:dy/dt};pan={x:t.clientX,y:t.clientY,t:now}}},{passive:false});
+  addEventListener('touchend',e=>{if(!free)return;if(e.touches.length===1){pin=null;startPan(e.touches[0]);return}
+    if(e.touches.length===0){pin=null;pan=null;if(vel&&!reduce&&(Math.abs(vel.x)+Math.abs(vel.y))>.08){let v={...vel},last=performance.now();
+      const glide=n=>{if(!free||pan||pin)return;const dt=n-last;last=n;free.cx-=v.x*dt/free.s;free.cy-=v.y*dt/free.s;bounds(free);v.x*=Math.pow(.994,dt);v.y*=Math.pow(.994,dt);if(Math.abs(v.x)+Math.abs(v.y)>.02)requestAnimationFrame(glide)};requestAnimationFrame(glide)}}},{passive:true});
+  addEventListener('resize',()=>{if(free)bounds(free)});
+ }
  /* click or tap a page that isn't the one in focus -> fly to it */
  document.addEventListener('click',e=>{if(root.classList.contains('dev')||busy())return;const fr=e.target.closest('.frame');if(!fr)return;
-   const i=FRAMES.findIndex(f=>f.el===fr);if(i<0||i===active)return;e.preventDefault();e.stopPropagation();go(i)},true);
+   const i=FRAMES.findIndex(f=>f.el===fr);if(i<0||(i===active&&!free))return;e.preventDefault();e.stopPropagation();go(i)},true);
  /* Back to top + hint, shown on the whole-canvas view */
  const bar=document.createElement('div');bar.className='ovbar';bar.setAttribute('aria-hidden','true');
- bar.innerHTML='<span class="ovtip"><span class="ovl">Tap a page or pinch to zoom in</span><span class="ovs">Tap a page to open</span></span><button type="button" class="ovtop">Back to top <b aria-hidden="true">↑</b></button>';
+ bar.innerHTML='<span class="ovtip"><span class="ovl">Click any page to open it</span><span class="ovs">Pinch, drag, tap a page</span></span><button type="button" class="ovtop">Back to top <b aria-hidden="true">↑</b></button>';
  document.body.appendChild(bar);bar.querySelector('.ovtop').onclick=()=>go(0);
- let last=-1;const tick=()=>{if(active!==last){last=active;const on=active===OV;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',on?'false':'true');
-   FRAMES.forEach((f,i)=>f.el.classList.toggle('tapme',i!==active))}requestAnimationFrame(tick)};requestAnimationFrame(tick);
+ const tt=document.createElement('button');tt.type='button';tt.className='totop';tt.innerHTML='<b aria-hidden="true">↑</b>Back to top';tt.onclick=()=>go(0);document.body.appendChild(tt);
+ let last=-1,lastF=null;const tick=()=>{const f=!!free;if(active!==last||f!==lastF){last=active;lastF=f;const on=active===OV||f;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',on?'false':'true');
+   tt.classList.toggle('on',!TOUCH&&active>0&&active!==OV);
+   FRAMES.forEach((g,i)=>g.el.classList.toggle('tapme',i!==active||f))}requestAnimationFrame(tick)};requestAnimationFrame(tick);
 })();
 
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){e.preventDefault();go(STOPS.indexOf(g.dataset.go))}if(!e.target.closest('.pin,.pin-pop'))$$('.pin-pop').forEach(x=>x.classList.remove('open'))});
@@ -1485,7 +1528,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#rx,#rxBtn,[data-act
 /* ================= QUICK ACTIONS ================= */
 const qa=$('#qa'),qaIn=$('#qaIn'),qaList=$('#qaList');let qaSel=0,qaItems=[];
 const ACTIONS=()=>[...STOPS.map((id,i)=>({ic:'#',t:'Go to '+(id==='overview'?'Whole canvas':FRAMES[i].label),run:()=>go(i)})),
-  {ic:'▤',t:'Read the Loan Against Property case study',run:()=>openCS('lap')},{ic:'✉',t:'Copy my email',run:()=>$('#copyEmail').click()},{ic:'☎',t:'Call Nikhil',run:()=>{location.href='tel:'+PHONE_LINK}},
+  {ic:'▤',t:'Read the Loan Against Property case study',run:()=>openCS('lap')},{ic:'✉',t:'Copy my email',run:()=>$('#copyEmail').click()},...(LINKS.resume?[{ic:'↓',t:'Download resume',run:()=>$('#resumeBtn').click()}]:[]),{ic:'☎',t:'Call Nikhil',run:()=>{location.href='tel:'+PHONE_LINK}},
   {ic:'◐',t:'Switch light / dark',run:()=>$('#themeBtn').click()},{ic:'⌥',t:'Open design tokens',run:()=>openTk(true)},
   {ic:'</>',t:dev?'Exit dev mode':'Turn on dev mode',k:'D',run:()=>setDev(!dev)},{ic:'▶',t:'Present',k:'P',run:()=>setPresent(true)},
   {ic:'☺',t:'Send a reaction',k:'E',run:()=>openRx(innerWidth/2,innerHeight/2)},{ic:'💬',t:'Cursor chat',k:'/',run:()=>openChat()}];
@@ -1526,13 +1569,13 @@ const CASES={lap:`
 <header class="cs-hero" id="cs-overview">
  <span class="cs-k">Case study · FlexiLoans · Lending · B2B internal tool</span>
  <h1>Turning a loan-rules wireframe into credit screens people can trust</h1>
- <p class="cs-lede">FlexiLoans launched Loan Against Property (LAP), its first secured loan, on a loan origination system (LOS) built for unsecured business loans. I redesigned the four screens the credit team uses to underwrite every LAP case, in one week.</p>
+ <p class="cs-lede">FlexiLoans launched Loan Against Property (LAP), its first secured loan, on a loan origination system (LOS) built for unsecured business loans. I redesigned the four screens the credit team uses to underwrite every LAP case, in five days.</p>
  <div class="cs-tldr">
   <div><small>Problem</small>The PM’s wireframe had the right rules, but choices that change the loan amount were preselected, nothing was validated, and the maths read like a spreadsheet.</div>
   <div><small>What I did</small>Audited the wireframe, defined four UX principles with the LAP team and PMs, and redesigned Collateral, Balance transfer, Banking and Eligibility on the FlexiLoans Design System.</div>
   <div><small>Outcome</small>Developed and released in Phase 1. In use for its first weeks, with no issues reported so far and every stakeholder requirement met.</div>
  </div>
- <div class="cs-facts"><div><small>My role</small>UI/UX designer</div><div><small>Timeline</small>1 week</div><div><small>Team</small>3 PMs, design lead, LAP team, dev team</div><div><small>Tools</small>Claude Design, FlexiLoans Design System</div><div><small>Status</small><span class="cs-live">Live · Phase 1</span></div></div>
+ <div class="cs-facts"><div><small>My role</small>UI/UX designer (sole designer)</div><div><small>Timeline</small>5 days design · live in ~10</div><div><small>Team</small>3 PMs, LAP team, design lead (reviews), dev team</div><div><small>Tools</small>Claude Design, FlexiLoans Design System</div><div><small>Status</small><span class="cs-live">Live · Phase 1</span></div></div>
  <img class="cs-cover" src="cs/lap/cover.jpg" alt="Redesigned Collateral screen with an owners table, property details and valuations" data-zoom="cs/lap/collateral-after.jpg">
 </header>
 
@@ -1550,7 +1593,7 @@ const CASES={lap:`
   <div class="cs-fa" aria-hidden="true"></div>
   <div class="cs-fs key"><small>04 · Eligibility</small><b>Final eligible amount</b><span class="cs-chip k">= lowest of</span><span class="cs-mini">Income limit · Property limit (value × LTV) · Scheme maximum</span></div>
  </div>
- <p>The PMs handed over a ten-screen wireframe. It got the business rules right, but it was written as a developer reference, not for the credit manager using it all day. I audited the four credit screens against usability heuristics:</p>
+ <p>A PM handed over a four-tab wireframe. It got the business rules right, but it was written as a developer reference, not for the credit manager using it all day. I audited the four credit screens against usability heuristics:</p>
  <div class="cs-table" role="table" aria-label="Heuristic audit of the wireframe">
   <div class="th" role="row"><span role="columnheader">What the wireframe did</span><span role="columnheader">Why it’s a risk</span><span role="columnheader">Heuristic</span></div>
   <div role="row"><span role="cell">Property type and usage preselected (Residential, Self-occupied)</span><span role="cell">A case could be saved without anyone choosing, silently setting a 60% LTV</span><span role="cell"><em class="cs-h">Error prevention</em></span></div>
@@ -1643,27 +1686,27 @@ const CASES={lap:`
 </section>
 
 <section class="cs-sec" id="cs-process"><span class="cs-k">05 · Process</span>
- <h2>One week, from wireframe to coded prototype</h2>
+ <h2>Five days, from wireframe to clickable prototype</h2>
  <div class="cs-steps">
   <div><i>1</i><b>Understand</b><span>Walked through the wireframe and loan rules with the LAP team and PMs.</span></div>
   <div><i>2</i><b>Audit</b><span>Reviewed each screen against heuristics and the four principles.</span></div>
   <div><i>3</i><b>Design</b><span>Wrote specs and built the screens in Claude Design on the design system.</span></div>
   <div><i>4</i><b>Review</b><span>Iterated with the PMs as requirements changed.</span></div>
-  <div><i>5</i><b>Hand off</b><span>Delivered a coded, clickable HTML prototype to developers.</span></div>
+  <div><i>5</i><b>Hand off</b><span>Handed off a clickable prototype to developers, then reviewed their build.</span></div>
  </div>
  <h3>How I used AI, and what stayed with me</h3>
  <div class="cs-ai">
   <div><small>What I did</small><ul><li>Set up our design system’s guidelines inside Claude Design, so every generated screen used FlexiLoans components, colours and type</li><li>Wrote the specs and prompts for each screen and state</li><li>Made the UX decisions: what to ask, in what order, when to warn</li><li>Reviewed and corrected every screen: logic, copy, states and design system details</li></ul></div>
-  <div><small>What Claude Design did</small><ul><li>Turned my specs into working, coded layouts</li><li>Let me iterate quickly when requirements changed</li><li>Produced a clickable prototype that developers built from</li></ul></div>
+  <div><small>What Claude Design did</small><ul><li>Turned my specs into working, clickable layouts</li><li>Let me iterate quickly when requirements changed</li><li>Produced a clickable prototype that developers built from</li></ul></div>
  </div>
- <p>A coded prototype also changed the reviews: the PMs could change a valuation and watch the max loan and eligible amount update, so feedback was about behaviour, not pixels.</p>
+ <p>An interactive prototype also changed the reviews: the PMs could change a valuation and watch the max loan and eligible amount update, so feedback was about behaviour, not pixels.</p>
 </section>
 
 <section class="cs-sec" id="cs-outcome"><span class="cs-k">06 · Outcome</span>
  <h2>Shipped in Phase 1</h2>
  <div class="cs-stats">
   <div><b>4 screens</b><span>redesigned end to end, for 3 loan variants</span></div>
-  <div><b>1 week</b><span>from wireframe to coded prototype</span></div>
+  <div><b>5 days</b><span>from wireframe to clickable prototype</span></div>
   <div><b>Live</b><span>developed and released with LAP Phase 1</span></div>
   <div><b>0 issues</b><span>reported by stakeholders in the first weeks of use</span></div>
  </div>
@@ -1845,8 +1888,8 @@ boot();requestAnimationFrame(render);
   'FL Design System':["His design system is published on Figma Community. Go have a look!"],
   'Bank statement upload':["He reworked the step where loan applications used to stall."],
   'CloudNBFC lender portal':["Rebuilt end to end on the design system. So clean."],
-  'Loan Against Property':["Wireframe to coded prototype in one week. Read this one!"],
-  'SCF marketing website':["B2B finance in plain words. Even I understood it."],
+  'Loan Against Property':["Wireframe to clickable prototype in 5 days. Read this one!"],
+  'FlexiGro website redesign':["One week, one whole website. Go see it live!"],
   'Wins':["Look at all these wins. I helped by napping."],
   'Off the canvas':["He's a team player. On the field too."],
   'Say hello':["Hire him! I'll come along for free.","Go on, say hi. He'd love to hear from you."],

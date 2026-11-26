@@ -1,0 +1,133 @@
+/* FlexiLoans Design System — component tokens
+   Literal values captured from Figma file FL - Components (fileKey
+   b8lNMNehGVEoYX2vGfQCGv) via the fl-design-system component specs. These are
+   FlexiLoans' OWN component measurements and differ from the Material 3
+   baseline in a few places — most visibly the 30px button/pill radius and the
+   two button colour versions (V1 navy, V2 cyan). Where a component exists in
+   the M3 card set but not in the Figma library, the M3 measurement is used and
+   the component's .prompt.md says so. */
+
+:root {
+  /* ── Button — 2 sizes, radius 30, height fixed / width hug ─────────────── */
+  --fl-button-radius: 30px;
+  --fl-button-height-lg: 40px;
+  --fl-button-pad-x-lg: 16px;
+  --fl-button-pad-y-lg: 10px;
+  --fl-button-gap-lg: 8px;
+  --fl-button-height-sm: 32px;
+  --fl-button-pad-x-sm: 12px;
+  --fl-button-pad-y-sm: 6px;
+  --fl-button-gap-sm: 4px;
+  --fl-button-icon-frame: 20px;
+  --fl-button-stroke: 1px;
+  --fl-button-stroke-focused: 2px;
+  --fl-button-label-size: 14px;
+  --fl-button-label-line: 20px;
+  --fl-button-label-weight: 500; /* @kind other */
+  --fl-button-label-tracking: 0.25px; /* @kind other */
+
+  /* Button V1 — navy */
+  --fl-btn-v1-primary-bg: #0A3254;
+  --fl-btn-v1-primary-bg-hover: #265074;
+  --fl-btn-v1-primary-bg-pressed: #416E93;
+  --fl-btn-v1-focus-ring: #020A11;
+  --fl-btn-v1-on-primary: #FFFFFF;
+  --fl-btn-v1-quiet-fg: #0A3254;
+  --fl-btn-v1-quiet-bg-hover: #ECFAFF;
+  --fl-btn-v1-quiet-bg-pressed: #B4EBFF;
+
+  /* Button V2 — cyan (the default for product surfaces) */
+  --fl-btn-v2-primary-bg: #00B9F1;
+  --fl-btn-v2-primary-bg-hover: #33C7F4;
+  --fl-btn-v2-primary-bg-pressed: #0094C1;
+  --fl-btn-v2-focus-ring: #004A60;
+  --fl-btn-v2-on-primary: #FFFFFF;
+  --fl-btn-v2-quiet-fg: #00B9F1;
+  --fl-btn-v2-quiet-fg-active: #0A3254;
+  --fl-btn-v2-quiet-bg-hover: #E6F8FE;
+  --fl-btn-v2-quiet-bg-pressed: #CCF1FC;
+
+  /* Shared disabled treatment for every button type */
+  --fl-btn-disabled-bg: #D6D6D6;
+  --fl-btn-disabled-fg: #898989;
+  --fl-btn-disabled-stroke: #898989;
+
+  /* ── Icon button — 48 touch target, 40 effect circle, 24 glyph ─────────── */
+  --fl-icon-button-touch: 48px;
+  --fl-icon-button-effect: 40px;
+  --fl-icon-button-glyph: 24px;
+
+  /* ── FAB — 4 sizes, constant colours across themes ────────────────────── */
+  --fl-fab-size-sm: 40px;
+  --fl-fab-size-md: 48px;
+  --fl-fab-size-lg: 56px;
+  --fl-fab-size-xl: 92px;
+  --fl-fab-bg: #43CEFF;
+  --fl-fab-fg: #0A3254;
+  --fl-fab-shadow: 0 2px 1px rgb(0 0 0 / .15);
+
+  /* ── Avatar — fixed square, clamps to a circle; glyph size per size ───── */
+  --fl-avatar-xs: 24px;
+  --fl-avatar-xs-glyph: 18px;
+  --fl-avatar-sm: 32px;
+  --fl-avatar-sm-glyph: 20px;
+  --fl-avatar-md: 40px;
+  --fl-avatar-md-glyph: 24px;
+  --fl-avatar-lg: 48px;
+  --fl-avatar-lg-glyph: 40px;
+  --fl-avatar-bg: #0A3254;
+  --fl-avatar-fg: #FFFFFF;
+  --fl-avatar-bg-dark: #43CEFF;
+  --fl-avatar-fg-dark: #0A3254;
+  --fl-avatar-bg-disabled: #898989;
+  --fl-avatar-fg-disabled: #D0D0D0;
+
+  /* ── Badge — dot / 1-digit / 2-digit / overflow ────────────────────────── */
+  --fl-badge-dot: 6px;
+  --fl-badge-dot-radius: 3px;
+  --fl-badge-height: 16px;
+  --fl-badge-width-1: 16px;
+  --fl-badge-width-2: 22px;
+  --fl-badge-radius: 8px;
+  --fl-badge-pad: 4px;
+  --fl-badge-bg: #0A3254;
+  --fl-badge-fg: #FFFFFF;
+  --fl-badge-bg-dark: #00B9F1;
+  --fl-badge-fg-dark: #0A3254;
+
+  /* ── Card — one radius on the outer box, clipped children ─────────────── */
+  --fl-card-radius: 12px;
+  --fl-card-bg: #FFFFFF;
+  --fl-card-bg-hover: #E6F8FE;
+  --fl-card-bg-pressed: #CCF1FC;
+  --fl-card-bg-disabled: #F2F1F1;
+  --fl-card-outline: #D6D6D6;
+  --fl-card-outline-focused: #0A3254;
+  --fl-card-shadow: 0 2px 4px rgb(0 0 0 / .1);
+  --fl-card-shadow-horizontal: 0 2px 2px rgb(0 0 0 / .1);
+  --fl-card-text: #0A3254;
+  --fl-card-subtext: #265074;
+  --fl-card-text-disabled: #898989;
+  --fl-card-thumb-bg: #9A9A9A;
+  --fl-card-thumb-fg: #C6C6C6;
+
+  /* ── Input field / OTP ────────────────────────────────────────────────── */
+  --fl-input-width-default: 300px;
+  --fl-input-radius: 8px;
+  --fl-otp-box: 56px;
+
+  /* ── Switch — 50×28 track, 20 thumb ───────────────────────────────────── */
+  --fl-switch-track-w: 50px;
+  --fl-switch-track-h: 28px;
+  --fl-switch-thumb: 20px;
+
+  /* ── Bars ─────────────────────────────────────────────────────────────── */
+  --fl-bottom-app-bar-height: 80px;
+  --fl-bottom-app-bar-shadow: 0 2px 3px rgb(0 0 0 / .15);
+  --fl-bar-outline: #D6D6D6;
+
+  /* ── Divider ──────────────────────────────────────────────────────────── */
+  --fl-divider-width: 1px;
+  --fl-divider-grey: #D6D6D6;
+  --fl-divider-blue: #00B9F1;
+}

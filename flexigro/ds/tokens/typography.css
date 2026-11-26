@@ -1,0 +1,187 @@
+/* FlexiLoans Design System — type
+   Source: FL - Components 2.fig, decoded via the attached fl-design-system codebase.
+   Measurements are Material Design 3 (material-web v0.192 / androidx Compose M3). */
+
+:root {
+/* ── typeface ─────────────────────────────────────────────────────────── */
+  --fl-font-brand: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fl-font-plain: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fl-font-mono:  'DM Mono', 'SF Mono', 'Fira Code', ui-monospace, monospace;
+
+/* ── type scale: M3's 15 roles ────────────────────────────────────────── */
+  --md-sys-typescale-display-large-size: 3.5625rem;       /* 57px */
+  --md-sys-typescale-display-large-line-height: 4rem;     /* 64px */
+  --md-sys-typescale-display-large-weight: 400; /* @kind other */
+  --md-sys-typescale-display-large-tracking: -0.015625rem; /* @kind other */
+
+  --md-sys-typescale-display-medium-size: 2.8125rem;      /* 45px */
+  --md-sys-typescale-display-medium-line-height: 3.25rem; /* 52px */
+  --md-sys-typescale-display-medium-weight: 400; /* @kind other */
+  --md-sys-typescale-display-medium-tracking: 0; /* @kind other */
+
+  --md-sys-typescale-display-small-size: 2.25rem;         /* 36px */
+  --md-sys-typescale-display-small-line-height: 2.75rem;  /* 44px */
+  --md-sys-typescale-display-small-weight: 400; /* @kind other */
+  --md-sys-typescale-display-small-tracking: 0; /* @kind other */
+
+  --md-sys-typescale-headline-large-size: 2rem;           /* 32px */
+  --md-sys-typescale-headline-large-line-height: 2.5rem;  /* 40px */
+  --md-sys-typescale-headline-large-weight: 400; /* @kind other */
+  --md-sys-typescale-headline-large-tracking: 0; /* @kind other */
+
+  --md-sys-typescale-headline-medium-size: 1.75rem;       /* 28px */
+  --md-sys-typescale-headline-medium-line-height: 2.25rem;/* 36px */
+  --md-sys-typescale-headline-medium-weight: 400; /* @kind other */
+  --md-sys-typescale-headline-medium-tracking: 0; /* @kind other */
+
+  --md-sys-typescale-headline-small-size: 1.5rem;         /* 24px */
+  --md-sys-typescale-headline-small-line-height: 2rem;    /* 32px */
+  --md-sys-typescale-headline-small-weight: 400; /* @kind other */
+  --md-sys-typescale-headline-small-tracking: 0; /* @kind other */
+
+  --md-sys-typescale-title-large-size: 1.375rem;          /* 22px */
+  --md-sys-typescale-title-large-line-height: 1.75rem;    /* 28px */
+  --md-sys-typescale-title-large-weight: 400; /* @kind other */
+  --md-sys-typescale-title-large-tracking: 0; /* @kind other */
+
+  --md-sys-typescale-title-medium-size: 1rem;             /* 16px */
+  --md-sys-typescale-title-medium-line-height: 1.5rem;    /* 24px */
+  --md-sys-typescale-title-medium-weight: 500; /* @kind other */
+  --md-sys-typescale-title-medium-tracking: 0.009375rem; /* @kind other */
+
+  --md-sys-typescale-title-small-size: 0.875rem;          /* 14px */
+  --md-sys-typescale-title-small-line-height: 1.25rem;    /* 20px */
+  --md-sys-typescale-title-small-weight: 500; /* @kind other */
+  --md-sys-typescale-title-small-tracking: 0.00625rem; /* @kind other */
+
+  --md-sys-typescale-body-large-size: 1rem;               /* 16px */
+  --md-sys-typescale-body-large-line-height: 1.5rem;      /* 24px */
+  --md-sys-typescale-body-large-weight: 400; /* @kind other */
+  --md-sys-typescale-body-large-tracking: 0.03125rem; /* @kind other */
+
+  --md-sys-typescale-body-medium-size: 0.875rem;          /* 14px */
+  --md-sys-typescale-body-medium-line-height: 1.25rem;    /* 20px */
+  --md-sys-typescale-body-medium-weight: 400; /* @kind other */
+  --md-sys-typescale-body-medium-tracking: 0.015625rem; /* @kind other */
+
+  --md-sys-typescale-body-small-size: 0.75rem;            /* 12px */
+  --md-sys-typescale-body-small-line-height: 1rem;        /* 16px */
+  --md-sys-typescale-body-small-weight: 400; /* @kind other */
+  --md-sys-typescale-body-small-tracking: 0.025rem; /* @kind other */
+
+  --md-sys-typescale-label-large-size: 0.875rem;          /* 14px */
+  --md-sys-typescale-label-large-line-height: 1.25rem;    /* 20px */
+  --md-sys-typescale-label-large-weight: 500; /* @kind other */
+  --md-sys-typescale-label-large-tracking: 0.00625rem; /* @kind other */
+
+  --md-sys-typescale-label-medium-size: 0.75rem;          /* 12px */
+  --md-sys-typescale-label-medium-line-height: 1rem;      /* 16px */
+  --md-sys-typescale-label-medium-weight: 500; /* @kind other */
+  --md-sys-typescale-label-medium-tracking: 0.03125rem; /* @kind other */
+
+  --md-sys-typescale-label-small-size: 0.6875rem;         /* 11px */
+  --md-sys-typescale-label-small-line-height: 1rem;       /* 16px */
+  --md-sys-typescale-label-small-weight: 500; /* @kind other */
+  --md-sys-typescale-label-small-tracking: 0.03125rem; /* @kind other */
+
+  /* prominent label weights — the only two roles M3 gives a prominent variant */
+  --md-sys-typescale-label-large-weight-prominent: 700; /* @kind other */
+  --md-sys-typescale-label-medium-weight-prominent: 700; /* @kind other */
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TYPESCALE UTILITY CLASSES
+   ══════════════════════════════════════════════════════════════════════════ */
+.fl-display-large, .fl-display-medium, .fl-display-small,
+.fl-headline-large, .fl-headline-medium, .fl-headline-small,
+.fl-title-large, .fl-title-medium, .fl-title-small,
+.fl-body-large, .fl-body-medium, .fl-body-small,
+.fl-label-large, .fl-label-medium, .fl-label-small { margin: 0; }
+
+.fl-display-large   { font: var(--md-sys-typescale-display-large-weight) var(--md-sys-typescale-display-large-size)/var(--md-sys-typescale-display-large-line-height) var(--fl-font-brand); letter-spacing: var(--md-sys-typescale-display-large-tracking); }
+.fl-display-medium  { font: var(--md-sys-typescale-display-medium-weight) var(--md-sys-typescale-display-medium-size)/var(--md-sys-typescale-display-medium-line-height) var(--fl-font-brand); letter-spacing: var(--md-sys-typescale-display-medium-tracking); }
+.fl-display-small   { font: var(--md-sys-typescale-display-small-weight) var(--md-sys-typescale-display-small-size)/var(--md-sys-typescale-display-small-line-height) var(--fl-font-brand); letter-spacing: var(--md-sys-typescale-display-small-tracking); }
+.fl-headline-large  { font: var(--md-sys-typescale-headline-large-weight) var(--md-sys-typescale-headline-large-size)/var(--md-sys-typescale-headline-large-line-height) var(--fl-font-brand); letter-spacing: var(--md-sys-typescale-headline-large-tracking); }
+.fl-headline-medium { font: var(--md-sys-typescale-headline-medium-weight) var(--md-sys-typescale-headline-medium-size)/var(--md-sys-typescale-headline-medium-line-height) var(--fl-font-brand); letter-spacing: var(--md-sys-typescale-headline-medium-tracking); }
+.fl-headline-small  { font: var(--md-sys-typescale-headline-small-weight) var(--md-sys-typescale-headline-small-size)/var(--md-sys-typescale-headline-small-line-height) var(--fl-font-brand); letter-spacing: var(--md-sys-typescale-headline-small-tracking); }
+.fl-title-large     { font: var(--md-sys-typescale-title-large-weight) var(--md-sys-typescale-title-large-size)/var(--md-sys-typescale-title-large-line-height) var(--fl-font-brand); letter-spacing: var(--md-sys-typescale-title-large-tracking); }
+.fl-title-medium    { font: var(--md-sys-typescale-title-medium-weight) var(--md-sys-typescale-title-medium-size)/var(--md-sys-typescale-title-medium-line-height) var(--fl-font-plain); letter-spacing: var(--md-sys-typescale-title-medium-tracking); }
+.fl-title-small     { font: var(--md-sys-typescale-title-small-weight) var(--md-sys-typescale-title-small-size)/var(--md-sys-typescale-title-small-line-height) var(--fl-font-plain); letter-spacing: var(--md-sys-typescale-title-small-tracking); }
+.fl-body-large      { font: var(--md-sys-typescale-body-large-weight) var(--md-sys-typescale-body-large-size)/var(--md-sys-typescale-body-large-line-height) var(--fl-font-plain); letter-spacing: var(--md-sys-typescale-body-large-tracking); }
+.fl-body-medium     { font: var(--md-sys-typescale-body-medium-weight) var(--md-sys-typescale-body-medium-size)/var(--md-sys-typescale-body-medium-line-height) var(--fl-font-plain); letter-spacing: var(--md-sys-typescale-body-medium-tracking); }
+.fl-body-small      { font: var(--md-sys-typescale-body-small-weight) var(--md-sys-typescale-body-small-size)/var(--md-sys-typescale-body-small-line-height) var(--fl-font-plain); letter-spacing: var(--md-sys-typescale-body-small-tracking); }
+.fl-label-large     { font: var(--md-sys-typescale-label-large-weight) var(--md-sys-typescale-label-large-size)/var(--md-sys-typescale-label-large-line-height) var(--fl-font-plain); letter-spacing: var(--md-sys-typescale-label-large-tracking); }
+.fl-label-medium    { font: var(--md-sys-typescale-label-medium-weight) var(--md-sys-typescale-label-medium-size)/var(--md-sys-typescale-label-medium-line-height) var(--fl-font-plain); letter-spacing: var(--md-sys-typescale-label-medium-tracking); }
+.fl-label-small     { font: var(--md-sys-typescale-label-small-weight) var(--md-sys-typescale-label-small-size)/var(--md-sys-typescale-label-small-line-height) var(--fl-font-plain); letter-spacing: var(--md-sys-typescale-label-small-tracking); }
+.fl-mono            { font-family: var(--fl-font-mono); font-size: 0.75rem; font-weight: 400; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FL TYPE SCALE — authoritative, from FL-Colors and Typo.fig
+   ─────────────────────────────────────────────────────────────────────────
+   The Figma Variables collection is the source of truth for FlexiLoans type.
+   It agrees with the M3 roles above on every size EXCEPT one: FlexiLoans
+   defines a Title role at 18px / 26px line-height that Material 3 has no slot
+   for, sitting between Title Large 22 and Title 16. The Typography component
+   set names its three title specimens Large-22 / Medium-18 / Small-16, so an
+   FL "Title Medium" is 18px, NOT the 16px M3 calls title-medium. Use the
+   --fl-type-* names below when following FlexiLoans' own naming.
+
+   Every role ships all five weights (300/400/500/600/700) — 70 variants in
+   the component set. Display and Headline are set Regular-400 in product;
+   Light-300 exists for marketing only.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --fl-weight-light: 300; /* @kind other */
+  --fl-weight-regular: 400; /* @kind other */
+  --fl-weight-medium: 500; /* @kind other */
+  --fl-weight-semibold: 600; /* @kind other */
+  --fl-weight-bold: 700; /* @kind other */
+
+  --fl-type-display-large: 57px/64px var(--fl-font-brand); /* @kind other */
+  --fl-type-display-medium: 45px/52px var(--fl-font-brand); /* @kind other */
+  --fl-type-display-small: 36px/44px var(--fl-font-brand); /* @kind other */
+  --fl-type-headline-large: 32px/40px var(--fl-font-brand); /* @kind other */
+  --fl-type-headline-medium: 28px/36px var(--fl-font-brand); /* @kind other */
+  --fl-type-headline-small: 24px/32px var(--fl-font-brand); /* @kind other */
+  --fl-type-title-large: 22px/28px var(--fl-font-plain); /* @kind other */
+  --fl-type-title-medium: 18px/26px var(--fl-font-plain); /* @kind other */
+  --fl-type-title-small: 16px/24px var(--fl-font-plain); /* @kind other */
+  --fl-type-body-large: 16px/24px var(--fl-font-plain); /* @kind other */
+  --fl-type-body-medium: 14px/20px var(--fl-font-plain); /* @kind other */
+  --fl-type-body-small: 12px/16px var(--fl-font-plain); /* @kind other */
+  --fl-type-label-large: 14px/20px var(--fl-font-plain); /* @kind other */
+  --fl-type-label-medium: 12px/16px var(--fl-font-plain); /* @kind other */
+  --fl-type-label-small: 11px/16px var(--fl-font-plain); /* @kind other */
+
+  --fl-track-display-large: -0.25px; /* @kind other */
+  --fl-track-title-small: 0.15px; /* @kind other */
+  --fl-track-body-large: 0.5px; /* @kind other */
+  --fl-track-body-medium: 0.25px; /* @kind other */
+  --fl-track-body-small: 0.4px; /* @kind other */
+  --fl-track-label-large: 0.1px; /* @kind other */
+  --fl-track-label-medium: 0.5px; /* @kind other */
+  --fl-track-label-small: 0.5px; /* @kind other */
+}
+
+.fl-t-display-large{font:var(--fl-weight-regular) var(--fl-type-display-large);letter-spacing:var(--fl-track-display-large)}
+.fl-t-display-medium{font:var(--fl-weight-regular) var(--fl-type-display-medium)}
+.fl-t-display-small{font:var(--fl-weight-regular) var(--fl-type-display-small)}
+.fl-t-headline-large{font:var(--fl-weight-regular) var(--fl-type-headline-large)}
+.fl-t-headline-medium{font:var(--fl-weight-regular) var(--fl-type-headline-medium)}
+.fl-t-headline-small{font:var(--fl-weight-regular) var(--fl-type-headline-small)}
+.fl-t-title-large{font:var(--fl-weight-regular) var(--fl-type-title-large)}
+.fl-t-title-medium{font:var(--fl-weight-medium) var(--fl-type-title-medium)}
+.fl-t-title-small{font:var(--fl-weight-medium) var(--fl-type-title-small);letter-spacing:var(--fl-track-title-small)}
+.fl-t-body-large{font:var(--fl-weight-regular) var(--fl-type-body-large);letter-spacing:var(--fl-track-body-large)}
+.fl-t-body-medium{font:var(--fl-weight-regular) var(--fl-type-body-medium);letter-spacing:var(--fl-track-body-medium)}
+.fl-t-body-small{font:var(--fl-weight-regular) var(--fl-type-body-small);letter-spacing:var(--fl-track-body-small)}
+.fl-t-label-large{font:var(--fl-weight-medium) var(--fl-type-label-large);letter-spacing:var(--fl-track-label-large)}
+.fl-t-label-medium{font:var(--fl-weight-medium) var(--fl-type-label-medium);letter-spacing:var(--fl-track-label-medium)}
+.fl-t-label-small{font:var(--fl-weight-medium) var(--fl-type-label-small);letter-spacing:var(--fl-track-label-small)}
+.fl-w-300{font-weight:300}.fl-w-400{font-weight:400}.fl-w-500{font-weight:500}.fl-w-600{font-weight:600}.fl-w-700{font-weight:700}
+
+/* Links. Defined here so a link a designer adds later never renders browser blue. */
+a{color:var(--md-sys-color-link);text-decoration:none}
+a:hover{color:var(--md-sys-color-link-hover);text-decoration:underline}
+a:visited{color:var(--md-sys-color-link-visited)}
